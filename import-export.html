@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import/Export Services - RRB Group</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Navigation Styles */
+        .navbar {
+            background: var(--surface);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface);
+            min-width: 220px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--surface-variant);
+            color: var(--accent-color);
+        }
+
+        /* Page Specific Styles */
+        .service-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .service-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features-section {
+            padding: 80px 0;
+            background: var(--background);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: left;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .process-section {
+            padding: 80px 0;
+            background: var(--surface-variant);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step-card {
+            background: var(--surface);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            background: var(--accent-color);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: bold;
+        }
+
+        .locations-section {
+            padding: 80px 0;
+            background: var(--background);
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .location-card {
+            background: var(--surface);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .location-card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .service-header h1 {
+                font-size: 2rem;
+            }
+
+            .service-header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <img src="images/rrb-logo.png" alt="RRB Group Logo">
+                    <span>RRB Group</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="virtual-office.html">Virtual Office</a>
+                            <a href="buyers-agent.html">Buyer's Agent</a>
+                            <a href="import-export.html">Import/Export</a>
+                            <a href="migration.html">Migration & Education</a>
+                            <a href="lab-equipment.html">Lab Equipment</a>
+                            <a href="coming-soon.html">Coming Soon</a>
+                        </div>
+                    </div>
+                    <a href="about.html">About Us</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="recommendations.html">Recommendations</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="#contact">Contact Us</a>
+                </div>
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Contact Toggle Button -->
+        <div class="contact-toggle">
+            <button class="contact-toggle-btn">
+                <i class="fas fa-headset"></i>
+                <span>How can we help?</span>
+            </button>
+            <div class="contact-popup">
+                <div class="contact-popup-content">
+                    <button class="close-popup">×</button>
+                    <h2>Contact Us</h2>
+                    <div class="contact-info-popup">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+1234567890">+1 234 567 890</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:contact@rrbgroup.com">contact@rrbgroup.com</a>
+                        </div>
+                    </div>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="service-header">
+            <div class="container">
+                <h1>Global Import/Export Solutions</h1>
+                <p>Your trusted partner for seamless international trade, specializing in exports from China to Australia, Colombia, and worldwide markets.</p>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2>Our Import/Export Services</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-search"></i>
+                        <h3>Supplier Sourcing</h3>
+                        <p>We help you find reliable suppliers in China, leveraging our extensive network and local expertise to ensure quality products at competitive prices.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-ship"></i>
+                        <h3>Logistics Management</h3>
+                        <p>Complete logistics solutions including shipping, customs clearance, and delivery coordination to ensure your shipment arrives safely and on time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Local Agents</h3>
+                        <p>Our dedicated agents in China, Australia, and Colombia provide on-the-ground support and expertise in their respective markets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-section">
+            <div class="container">
+                <h2>Our Process</h2>
+                <div class="process-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Consultation</h3>
+                        <p>We understand your requirements and develop a tailored import/export strategy.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Supplier Selection</h3>
+                        <p>Our team in China identifies and verifies suitable suppliers for your products.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Quality Control</h3>
+                        <p>We ensure products meet your specifications and quality standards.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Logistics</h3>
+                        <p>We handle shipping, documentation, and customs clearance for smooth delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="locations-section">
+            <div class="container">
+                <h2>Our Global Network</h2>
+                <div class="locations-grid">
+                    <div class="location-card">
+                        <i class="fas fa-industry fa-3x"></i>
+                        <h3>China</h3>
+                        <p>Direct access to manufacturers and suppliers across major industrial hubs.</p>
+                    </div>
+                    <div class="location-card">
+                        <i class="fas fa-warehouse fa-3x"></i>
+                        <h3>Australia</h3>
+                        <p>Specialized import services and local market expertise.</p>
+                    </div>
+                    <div class="location-card">
+                        <i class="fas fa-globe-americas fa-3x"></i>
+                        <h3>Colombia</h3>
+                        <p>Dedicated support for South American market entry and distribution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Get Expert Support for Your Global Trade Journey</h2>
+                <p>Let us help you streamline your shipments and make your business operations more efficient with our comprehensive import/export solutions.</p>
+                <button class="cta-button">Contact Us Today</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Email: contact@rrbgroup.com</p>
+                    <p>Phone: +1 234 567 890</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Functionality
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Contact Toggle Functionality
+        const contactToggle = document.querySelector('.contact-toggle-btn');
+        const contactPopup = document.querySelector('.contact-popup');
+        const closePopup = document.querySelector('.close-popup');
+        const contactForm = document.getElementById('contactForm');
+        const ctaButton = document.querySelector('.cta-button');
+
+        // Function to open contact popup
+        const openContactPopup = () => {
+            contactPopup.classList.add('active');
+        };
+
+        contactToggle.addEventListener('click', openContactPopup);
+        ctaButton.addEventListener('click', openContactPopup);
+
+        closePopup.addEventListener('click', () => {
+            contactPopup.classList.remove('active');
+        });
+
+        contactPopup.addEventListener('click', (e) => {
+            if (e.target === contactPopup) {
+                contactPopup.classList.remove('active');
+            }
+        });
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            console.log('Form submitted:', Object.fromEntries(formData));
+            contactPopup.classList.remove('active');
+            contactForm.reset();
+            alert('Thank you for your message. We will get back to you soon!');
+        });
+    </script>
+</body>
+</html> 
