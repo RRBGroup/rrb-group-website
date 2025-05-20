@@ -10,10 +10,11 @@
     <style>
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('images/Welcoming field.jpg') center center/cover no-repeat;
             color: var(--white);
             padding: 150px 0 100px;
             text-align: center;
+            position: relative;
         }
 
         .hero h1 {
@@ -128,16 +129,16 @@
             background: var(--surface);
             padding: 1rem 0;
             position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        
+            
         }
 
         .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: nowrap;
+         
         }
 
         .nav-links {
@@ -425,29 +426,42 @@
                 justify-content: space-between;
             }
         }
+
+        .news-ticker {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            background: #f5f5f5;
+            color: #222;
+            border-radius: 4px;
+            padding: 10px 0;
+            margin-top: 10px;
+            position: relative;
+            font-size: 1rem;
+        }
+        .news-ticker span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 80s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .news-ticker a {
+            color: #0077c2;
+            text-decoration: none;
+            margin: 0 2rem;
+        }
+        .news-ticker a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <!-- Assistance Bar -->
-    <div class="assistance-bar">
-        <div class="container">
-            <h2>Need Assistance?</h2>
-            <div class="contact-info">
-                <a href="tel:+1234567890">
-                    <i class="fas fa-phone"></i>
-                    Call us: +1 234 567 890
-                </a>
-                <a href="mailto:contact@rrbgroup.com">
-                    <i class="fas fa-envelope"></i>
-                    Email: contact@rrbgroup.com
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="container">
             <a href="index.html" class="logo">
                 <img src="images/rrb-logo.png" alt="RRB Group Logo">
                 <span>RRB Group</span>
@@ -462,6 +476,7 @@
                         <a href="import-export.html">Import/Export</a>
                         <a href="migration.html">Migration & Education</a>
                         <a href="lab-equipment.html">Lab Equipment</a>
+                        <a href="buying-in-bali.html">Buying in Bali</a>
                     </div>
                 </div>
                 <a href="about.html">About Us</a>
@@ -518,7 +533,6 @@
             <div class="container">
                 <h1>Welcome to RRB Group</h1>
                 <p>Your Trusted Partner in Business Solutions</p>
-                <a href="#services" class="cta-button">Get Started</a>
             </div>
         </section>
 
@@ -539,10 +553,10 @@
                         <a href="buyers-agent.html" class="learn-more">Learn More</a>
                     </div>
                     <div class="service-card">
-                        <i class="fas fa-globe"></i>
-                        <h3>Import/Export Solutions</h3>
-                        <p>Comprehensive international trade and logistics services.</p>
-                        <a href="import-export.html" class="learn-more">Learn More</a>
+                        <i class="fas fa-home"></i>
+                        <h3>Buying in Bali</h3>
+                        <p>Expert guidance for property investments in Bali's prime locations.</p>
+                        <a href="buying-in-bali.html" class="learn-more">Learn More</a>
                     </div>
                     <div class="service-card">
                         <i class="fas fa-graduation-cap"></i>
@@ -557,10 +571,10 @@
                         <a href="lab-equipment.html" class="learn-more">Learn More</a>
                     </div>
                     <div class="service-card">
-                        <i class="fas fa-rocket"></i>
-                        <h3>Coming Soon</h3>
-                        <p>Something exciting is in the works. Stay tuned for more details.</p>
-                        <a href="coming-soon.html" class="learn-more">Learn More</a>
+                        <i class="fas fa-globe"></i>
+                        <h3>Import/Export Solutions</h3>
+                        <p>Comprehensive international trade and logistics services.</p>
+                        <a href="import-export.html" class="learn-more">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -572,24 +586,25 @@
                 <div class="about-content">
                     <div class="about-text">
                         <h2>About RRB Group</h2>
-                        <p>We are a leading business solutions provider committed to delivering exceptional services to our clients. With years of experience and a dedicated team of professionals, we help businesses thrive in today's competitive market.</p>
+                        <p>RRB Group is a leading young business solutions provider based in Sydney, Australia, specializing in business consulting and services. With a dedicated team led by Project Manager and Engineer Brayan Rodriguez, we are committed to delivering exceptional value to our clients. Our expertise spans business services, international trade, property investment, and more. We pride ourselves on our innovative approach, client-focused solutions, and a strong network of industry partners. Discover how RRB Group can help your business thrive in today's competitive market.</p>
                         <div class="about-stats">
                             <div class="stat-item">
-                                <h3>10+</h3>
+                                <h3>8+</h3>
                                 <p>Years Experience</p>
                             </div>
                             <div class="stat-item">
-                                <h3>500+</h3>
-                                <p>Happy Clients</p>
-                            </div>
-                            <div class="stat-item">
-                                <h3>50+</h3>
+                                <h3>4+</h3>
                                 <p>Expert Team</p>
                             </div>
+                            <div class="stat-item">
+                                <h3>6</h3>
+                                <p>International Service Verticals</p>
+                            </div>
                         </div>
+                        <p style="margin-top:1rem;">Learn more about our team leader <a href="https://www.linkedin.com/in/brayanrodriguezr/" target="_blank">Brayan Rodriguez</a>.</p>
                     </div>
                     <div class="about-image">
-                        <img src="images/about-image.jpg" alt="RRB Group Office">
+                        <img src="images/Office Temp.jpg" alt="RRB Group Office">
                     </div>
                 </div>
             </div>
@@ -600,23 +615,64 @@
             <div class="container">
                 <h2>Latest News</h2>
                 <div class="blog-grid">
-                    <div class="blog-card">
-                        <h3>Expanding Our Services</h3>
-                        <div class="date">June 15, 2024</div>
-                        <p>RRB Group announces new service offerings to better serve our growing client base.</p>
-                        <a href="#" class="read-more">Read More →</a>
+                    <div class="blog-card" style="width:100%;margin-bottom:2rem;">
+                        <!-- TradingView News Widget BEGIN -->
+                        <div class="tradingview-widget-container" style="display: flex; justify-content: center;">
+                          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async></script>
+                          <script type="text/javascript">
+                            new TradingView.widget({
+                              "feedMode": "all_symbols",
+                              "isTransparent": false,
+                              "displayMode": "regular",
+                              "width": "75%",
+                              "height": "500",
+                              "colorTheme": "light",
+                              "locale": "en"
+                            });
+                          </script>
+                        </div>
+                        <!-- TradingView News Widget END -->
                     </div>
-                    <div class="blog-card">
-                        <h3>Industry Recognition</h3>
-                        <div class="date">June 10, 2024</div>
-                        <p>RRB Group receives excellence award for outstanding business services.</p>
-                        <a href="#" class="read-more">Read More →</a>
-                    </div>
-                    <div class="blog-card">
-                        <h3>Client Success Story</h3>
-                        <div class="date">June 5, 2024</div>
-                        <p>How we helped a startup grow into a market leader within 2 years.</p>
-                        <a href="#" class="read-more">Read More →</a>
+                    <div class="blog-card" style="width:100%;">
+                        <!-- TradingView Indices Widget BEGIN -->
+                        <div class="tradingview-widget-container" style="display: flex; justify-content: center;">
+                          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async></script>
+                          <script type="text/javascript">
+                            new TradingView.widget({
+                              "colorTheme": "light",
+                              "dateRange": "12M",
+                              "showChart": true,
+                              "locale": "en",
+                              "width": "75%",
+                              "height": "400",
+                              "largeChartUrl": "",
+                              "isTransparent": false,
+                              "showSymbolLogo": true,
+                              "plotLineColorGrowing": "rgba(33, 150, 243, 1)",
+                              "plotLineColorFalling": "rgba(33, 150, 243, 1)",
+                              "gridLineColor": "rgba(240, 243, 250, 0)",
+                              "scaleFontColor": "rgba(120, 123, 134, 1)",
+                              "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
+                              "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
+                              "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
+                              "tabs": [
+                                {
+                                  "title": "Indices",
+                                  "symbols": [
+                                    {"s": "FOREXCOM:SPXUSD", "d": "S&P 500"},
+                                    {"s": "FOREXCOM:NSXUSD", "d": "Nasdaq 100"},
+                                    {"s": "FOREXCOM:DJI", "d": "Dow 30"},
+                                    {"s": "INDEX:NKY", "d": "Nikkei 225"},
+                                    {"s": "INDEX:DEU40", "d": "DAX"},
+                                    {"s": "FOREXCOM:UKXGBP", "d": "FTSE 100"}
+                                  ],
+                                  "originalTitle": "Indices"
+                                }
+                              ]
+                            });
+                          </script>
+                        </div>
+                        <!-- TradingView Indices Widget END -->
                     </div>
                 </div>
             </div>
@@ -714,22 +770,41 @@
                 <h4>Contact</h4>
                 <div class="footer-contact">
                     <p>RRB Group Headquarters</p>
-                    <p>123 Business Avenue</p>
-                    <p>City, Country</p>
-                    <p>Phone: +1 234 567 890</p>
+                    <p>St James Trust Building, 185 Elizabeth St,</p>
+                    <p>Sydney, NSW 2000</p>
+                    <p>Phone: +61 435 892 805</p>
                     <p>Email: contact@rrbgroup.com</p>
                 </div>
             </div>
             <div class="footer-section">
                 <h4>Follow Us</h4>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/company/rrbgroup/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/rrb_group.au?igsh=MTI3dWJpcGoxYTNncw%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://finance.yahoo.com/news/rssindex')
+      .then(response => response.json())
+      .then(data => {
+        const ticker = document.getElementById('news-ticker');
+        if (data.status === 'ok') {
+          const headlines = data.items.slice(0, 10).map(item => {
+            const img = item.enclosure ? `<img src="${item.enclosure.link}" alt="" style="height:24px;vertical-align:middle;margin-right:8px;border-radius:3px;">` : '';
+            return `<span style="display:inline-flex;align-items:center;"><a href="${item.link}" target="_blank" rel="noopener">${img}${item.title}</a></span>`;
+          }).join(' <span style="color:#ccc;">|</span> ');
+          ticker.innerHTML = `<span>${headlines}</span>`;
+        } else {
+          ticker.innerHTML = '<span>Unable to load news at this time.</span>';
+        }
+      })
+      .catch(() => {
+        document.getElementById('news-ticker').innerHTML = '<span>Unable to load news at this time.</span>';
+      });
+    </script>
 </body>
 </html> 

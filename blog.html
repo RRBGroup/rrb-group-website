@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - RRB Group</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+        .blog-list {
+            max-width: 900px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .blog-card {
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 32px;
+        }
+        .blog-card h2 {
+            margin-top: 0;
+        }
+        .blog-card .meta {
+            color: var(--text-color-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface);
+            min-width: 200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 0.5rem 0;
+            z-index: 1000;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-menu a:hover {
+            background-color: var(--surface-variant);
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/rrb-logo.png" alt="RRB Group Logo">
+                <span>RRB Group</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="virtual-office.html">Virtual Office</a>
+                        <a href="buyers-agent.html">Buyer's Agent</a>
+                        <a href="import-export.html">Import/Export</a>
+                        <a href="migration.html">Migration & Education</a>
+                        <a href="lab-equipment.html">Lab Equipment</a>
+                        <a href="buying-in-bali.html">Buying in Bali</a>
+                    </div>
+                </div>
+                <a href="about.html">About Us</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="recommendations.html">Recommendations</a>
+                <a href="careers.html">Careers</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <section class="blog-hero">
+        <div class="container">
+            <h1>RRB Group Blog</h1>
+            <p>Insights, trends, and strategies for business success</p>
+        </div>
+    </section>
+    <main>
+        <div class="blog-list">
+            <div class="blog-card">
+                <h2>How AI is Transforming Business Consulting</h2>
+                <div class="meta">Published: July 2024 | By RRB Group</div>
+                <p>Artificial Intelligence is revolutionizing the consulting industry by enabling data-driven decision making, automating routine tasks, and providing deeper insights into market trends. At RRB Group, we leverage AI tools to help our clients optimize operations, identify new opportunities, and stay ahead of the competition. The future of consulting is digital, and embracing AI is key to sustainable growth.</p>
+            </div>
+            <div class="blog-card">
+                <h2>Expanding Internationally: Key Considerations for Australian Businesses</h2>
+                <div class="meta">Published: July 2024 | By RRB Group</div>
+                <p>International expansion offers significant growth potential, but it also comes with challenges such as regulatory compliance, cultural differences, and supply chain complexities. Our team at RRB Group guides clients through every step, from market research to establishing local partnerships, ensuring a smooth and successful entry into new markets.</p>
+            </div>
+            <div class="blog-card">
+                <h2>Virtual Offices: The Future of Flexible Workspaces</h2>
+                <div class="meta">Published: July 2024 | By RRB Group</div>
+                <p>The rise of remote work has made virtual offices an essential solution for modern businesses. Virtual offices provide a prestigious address, professional services, and cost savings without the need for a physical presence. Discover how RRB Group's virtual office solutions can help your business stay agile and competitive in a rapidly changing world.</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Email: contact@rrbgroup.com</p>
+                    <p>Phone: +61 435 892 805</p>
+                    <p>St James Trust Building, 185 Elizabeth St, Sydney, NSW 2000</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/rrbgroup/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/rrb_group.au?igsh=MTI3dWJpcGoxYTNncw%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html> 

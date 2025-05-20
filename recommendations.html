@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations - RRB Group</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .recommendations-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+        .testimonial-list {
+            max-width: 900px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .testimonial-card {
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 32px;
+        }
+        .testimonial-card h3 {
+            margin-top: 0;
+        }
+        .testimonial-card .meta {
+            color: var(--text-color-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface);
+            min-width: 200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 0.5rem 0;
+            z-index: 1000;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-menu a:hover {
+            background-color: var(--surface-variant);
+            color: var(--accent-color);
+        }
+        .help-toggle-section {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+        .help-toggle {
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
+        .help-toggle:hover {
+            background: var(--secondary-color);
+        }
+        .help-content {
+            display: none;
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 24px;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .help-content.show {
+            display: block;
+        }
+        .contact-toggle {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            z-index: 1200;
+        }
+        .contact-toggle-btn {
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            padding: 16px 28px 16px 18px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: background 0.2s;
+        }
+        .contact-toggle-btn:hover {
+            background: var(--secondary-color);
+        }
+        .contact-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            right: 80px;
+            transform: translateY(-50%);
+            z-index: 1300;
+            background: rgba(0,0,0,0.2);
+            width: 100vw;
+            height: 100vh;
+        }
+        .contact-popup.active {
+            display: block;
+        }
+        .contact-popup-content {
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            padding: 32px 32px 24px 32px;
+            width: 350px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .close-popup {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            cursor: pointer;
+            color: var(--text-color-light);
+        }
+        .contact-info-popup {
+            margin-bottom: 18px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .submit-btn {
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/rrb-logo.png" alt="RRB Group Logo">
+                <span>RRB Group</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="virtual-office.html">Virtual Office</a>
+                        <a href="buyers-agent.html">Buyer's Agent</a>
+                        <a href="import-export.html">Import/Export</a>
+                        <a href="migration.html">Migration & Education</a>
+                        <a href="lab-equipment.html">Lab Equipment</a>
+                        <a href="buying-in-bali.html">Buying in Bali</a>
+                    </div>
+                </div>
+                <a href="about.html">About Us</a>
+                <a href="blog.html">Blog</a>
+                <a href="recommendations.html" class="active">Recommendations</a>
+                <a href="careers.html">Careers</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="recommendations-hero">
+        <div class="container">
+            <h1>Client Recommendations</h1>
+            <p>What our clients say about working with RRB Group</p>
+        </div>
+    </section>
+    <main>
+        <div class="testimonial-list">
+            <div class="testimonial-card">
+                <h3>"RRB Group's virtual office solution has been instrumental in our company's growth. Professional service and excellent support."</h3>
+                <div class="meta">John Smith, CEO, Tech Innovations</div>
+            </div>
+            <div class="testimonial-card">
+                <h3>"Their business services have helped us streamline our operations and focus on what matters most - our core business."</h3>
+                <div class="meta">Sarah Johnson, Director, Global Solutions</div>
+            </div>
+            <div class="testimonial-card">
+                <h3>"The consulting team at RRB Group provided invaluable insights that helped us navigate our expansion successfully."</h3>
+                <div class="meta">Michael Chen, Founder, Innovation Labs</div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Email: contact@rrbgroup.com</p>
+                    <p>Phone: +61 435 892 805</p>
+                    <p>St James Trust Building, 185 Elizabeth St, Sydney, NSW 2000</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/rrbgroup/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/rrb_group.au?igsh=MTI3dWJpcGoxYTNncw%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html> 
