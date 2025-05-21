@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Virtual Office - RRB Group</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=AUD"></script>
+    <script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>
+    <style>
+        .signup-container {
+            max-width: 800px;
+            margin: 120px auto 40px;
+            padding: 40px;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--surface-variant);
+            z-index: 1;
+        }
+
+        .step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--surface-variant);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .step.completed {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .step-label {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--surface-variant);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: var(--surface-variant);
+            color: var(--text-color);
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .plan-summary {
+            background: var(--surface-variant);
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .plan-summary h3 {
+            margin-bottom: 16px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .total {
+            border-top: 1px solid var(--text-color-light);
+            padding-top: 16px;
+            margin-top: 16px;
+            font-weight: 600;
+        }
+
+        #payment-form {
+            margin-top: 24px;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .payment-method {
+            border: 2px solid var(--surface-variant);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary-color);
+            background: var(--surface-variant);
+        }
+
+        .payment-method img {
+            height: 30px;
+            margin-bottom: 8px;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-message i {
+            font-size: 64px;
+            color: var(--accent-color);
+            margin-bottom: 24px;
+        }
+
+        .form-group input.error,
+        .form-group select.error {
+            border-color: #dc3545;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .validation-summary {
+            background-color: #fff3f3;
+            border: 1px solid #dc3545;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .validation-summary.show {
+            display: block;
+        }
+
+        .validation-summary h4 {
+            color: #dc3545;
+            margin: 0 0 10px 0;
+        }
+
+        .validation-summary ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .validation-summary li {
+            color: #dc3545;
+            margin-bottom: 5px;
+        }
+
+        .payment-form {
+            display: none;
+        }
+
+        .payment-form.active {
+            display: block;
+        }
+
+        .bank-details {
+            background: var(--surface-variant);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .bank-details h4 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .bank-details p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        #apple-pay-button {
+            -webkit-appearance: -apple-pay-button;
+            -apple-pay-button-type: plain;
+            -apple-pay-button-style: black;
+            height: 45px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        #paypal-button-container {
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .signup-container {
+                margin: 100px 20px 40px;
+                padding: 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .step-label {
+                display: none;
+            }
+        }
+
+        .bank-note {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 6px;
+        }
+
+        .bank-note p {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bank-note i {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/rrb-logo.png" alt="RRB Group Logo">
+                <span>RRB Group</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="signup-container">
+        <div class="progress-bar">
+            <div class="step active" data-step="1">
+                1
+                <span class="step-label">Company Details</span>
+            </div>
+            <div class="step" data-step="2">
+                2
+                <span class="step-label">Contact Information</span>
+            </div>
+            <div class="step" data-step="3">
+                3
+                <span class="step-label">Payment</span>
+            </div>
+            <div class="step" data-step="4">
+                4
+                <span class="step-label">Confirmation</span>
+            </div>
+        </div>
+
+        <form id="signup-form">
+            <!-- Step 1: Company Details -->
+            <div class="form-step active" data-step="1">
+                <h2>Company Details</h2>
+                <div class="plan-summary">
+                    <h3>Select Your Plan</h3>
+                    <div class="form-group">
+                        <label for="plan-select">Plan Type</label>
+                        <select id="plan-select" name="plan-select" required onchange="updatePlanSummary()">
+                            <option value="Professional">Professional</option>
+                            <option value="Basic">Basic</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="period-select">Billing Period</label>
+                        <select id="period-select" name="period-select" required onchange="updatePlanSummary()">
+                            <option value="12 Months">12 Months (35% off)</option>
+                            <option value="6 Months">6 Months (20% off)</option>
+                            <option value="1 Month">1 Month</option>
+                        </select>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total:</span>
+                        <span id="total-amount">780 AUD</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="company-name">Company Name *</label>
+                    <input type="text" id="company-name" name="company-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="abn">ABN (Australian Business Number)</label>
+                    <input type="text" id="abn" name="abn">
+                    <small class="form-text text-muted">Don't have an ABN? Contact us and we'll help you get one.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="business-type">Business Type</label>
+                    <select id="business-type" name="business-type" required>
+                        <option value="">Select Business Type</option>
+                        <option value="sole-trader">Sole Trader</option>
+                        <option value="partnership">Partnership</option>
+                        <option value="company">Company</option>
+                        <option value="trust">Trust</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary next-step">Continue</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Contact Information -->
+            <div class="form-step" data-step="2">
+                <h2>Contact Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name *</label>
+                        <input type="text" id="first-name" name="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name *</label>
+                        <input type="text" id="last-name" name="last-name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State *</label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="country">Country *</label>
+                        <select id="country" name="country" required>
+                            <option value="Australia">Australia</option>
+                            <option value="New Zealand">New Zealand</option>
+                            <option value="United States">United States</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Singapore">Singapore</option>
+                            <option value="China">China</option>
+                            <option value="Japan">Japan</option>
+                            <option value="South Korea">South Korea</option>
+                            <option value="India">India</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="postcode">Postcode *</label>
+                        <input type="text" id="postcode" name="postcode" required>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary prev-step">Back</button>
+                    <button type="button" class="btn btn-primary next-step">Continue</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Payment -->
+            <div class="form-step" data-step="3">
+                <h2>Payment Information</h2>
+                <div class="payment-methods">
+                    <div class="payment-method selected" data-method="card">
+                        <i class="fas fa-credit-card"></i>
+                        <div>Credit Card</div>
+                    </div>
+                    <div class="payment-method" data-method="bank">
+                        <i class="fas fa-university"></i>
+                        <div>Bank Transfer</div>
+                    </div>
+                </div>
+
+                <!-- Credit Card Form -->
+                <form id="card-payment-form" class="payment-form active">
+                    <div id="card-element" class="form-group">
+                        <!-- Stripe Card Element will be inserted here -->
+                    </div>
+                    <div id="card-errors" class="error-message" role="alert"></div>
+                </form>
+
+                <!-- Bank Transfer Form -->
+                <form id="bank-payment-form" class="payment-form">
+                    <div class="bank-details">
+                        <h4>Bank Account Details for Payment</h4>
+                        <p><strong>Account Name:</strong> RRB Group Pty Ltd</p>
+                        <p><strong>BSB:</strong> XXX-XXX</p>
+                        <p><strong>Account Number:</strong> XXXXXXXX</p>
+                        <p><strong>Reference:</strong> Please use your company name as reference</p>
+                        <p><strong>Amount:</strong> <span id="bank-transfer-amount"></span> AUD</p>
+                        <div class="bank-note">
+                            <p><i class="fas fa-info-circle"></i> Please make the payment using the details above. Your order will be processed once the payment is confirmed.</p>
+                            <p><i class="fas fa-clock"></i> Bank transfers typically take 1-2 business days to process.</p>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary prev-step">Back</button>
+                    <button type="submit" class="btn btn-primary" id="submit-payment">Complete Payment</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Confirmation -->
+            <div class="form-step" data-step="4">
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Thank You for Your Order!</h2>
+                    <p>Your virtual office setup is being processed. You will receive a confirmation email shortly.</p>
+                    <p>Order Reference: <strong id="order-reference"></strong></p>
+                    <a href="index.html" class="btn btn-primary">Return to Homepage</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialPlan = urlParams.get('plan') || 'Professional';
+        const initialPeriod = urlParams.get('period') || '12 Months';
+
+        // Set initial plan and period
+        document.getElementById('plan-select').value = initialPlan;
+        document.getElementById('period-select').value = initialPeriod;
+
+        // Update plan summary
+        function updatePlanSummary() {
+            const plan = document.getElementById('plan-select').value;
+            const period = document.getElementById('period-select').value;
+            
+            let total = 0;
+            if (plan === 'Basic') {
+                total = period === '12 Months' ? 546 : period === '6 Months' ? 336 : 70;
+            } else {
+                total = period === '12 Months' ? 780 : period === '6 Months' ? 480 : 100;
+            }
+            document.getElementById('total-amount').textContent = `${total} AUD`;
+            document.getElementById('bank-transfer-amount').textContent = total;
+        }
+
+        // Initial update
+        updatePlanSummary();
+
+        // Form navigation
+        const formSteps = document.querySelectorAll('.form-step');
+        const progressSteps = document.querySelectorAll('.step');
+        const nextButtons = document.querySelectorAll('.next-step');
+        const prevButtons = document.querySelectorAll('.prev-step');
+
+        let currentStep = 1;
+
+        function showStep(step) {
+            formSteps.forEach(formStep => {
+                formStep.classList.remove('active');
+                if (parseInt(formStep.dataset.step) === step) {
+                    formStep.classList.add('active');
+                }
+            });
+
+            progressSteps.forEach(progressStep => {
+                progressStep.classList.remove('active', 'completed');
+                const stepNum = parseInt(progressStep.dataset.step);
+                if (stepNum === step) {
+                    progressStep.classList.add('active');
+                } else if (stepNum < step) {
+                    progressStep.classList.add('completed');
+                }
+            });
+        }
+
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (validateStep(currentStep)) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        prevButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                currentStep--;
+                showStep(currentStep);
+            });
+        });
+
+        function validateStep(step) {
+            const currentFormStep = document.querySelector(`.form-step[data-step="${step}"]`);
+            const inputs = currentFormStep.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            let errorMessages = [];
+
+            // Remove any existing validation summary
+            const existingSummary = currentFormStep.querySelector('.validation-summary');
+            if (existingSummary) {
+                existingSummary.remove();
+            }
+
+            // Remove error states from all inputs
+            inputs.forEach(input => {
+                input.classList.remove('error');
+                const errorMessage = input.parentElement.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.classList.remove('show');
+                }
+            });
+
+            // Validate each input
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.classList.add('error');
+                    
+                    // Create or show error message
+                    let errorMessage = input.parentElement.querySelector('.error-message');
+                    if (!errorMessage) {
+                        errorMessage = document.createElement('div');
+                        errorMessage.className = 'error-message';
+                        input.parentElement.appendChild(errorMessage);
+                    }
+                    errorMessage.textContent = `${input.previousElementSibling.textContent.replace(' *', '')} is required`;
+                    errorMessage.classList.add('show');
+                    
+                    errorMessages.push(input.previousElementSibling.textContent.replace(' *', ''));
+                }
+            });
+
+            // If there are errors, show validation summary
+            if (!isValid) {
+                const validationSummary = document.createElement('div');
+                validationSummary.className = 'validation-summary';
+                validationSummary.innerHTML = `
+                    <h4>Please complete all required fields:</h4>
+                    <ul>
+                        ${errorMessages.map(field => `<li>${field}</li>`).join('')}
+                    </ul>
+                `;
+                currentFormStep.insertBefore(validationSummary, currentFormStep.firstChild);
+                validationSummary.classList.add('show');
+            }
+
+            return isValid;
+        }
+
+        // Add input event listeners to remove error state when user starts typing
+        document.querySelectorAll('input[required], select[required]').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.classList.remove('error');
+                    const errorMessage = this.parentElement.querySelector('.error-message');
+                    if (errorMessage) {
+                        errorMessage.classList.remove('show');
+                    }
+                }
+            });
+        });
+
+        // Payment method selection
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const paymentForms = document.querySelectorAll('.payment-form');
+        const submitButton = document.getElementById('submit-payment');
+
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                // Update selected payment method
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+
+                // Show corresponding form
+                const methodType = method.dataset.method;
+                paymentForms.forEach(form => {
+                    form.classList.remove('active');
+                    if (form.id === `${methodType}-payment-form`) {
+                        form.classList.add('active');
+                    }
+                });
+
+                // Update submit button text
+                submitButton.textContent = methodType === 'bank' ? 'Confirm Bank Details' : 'Complete Payment';
+            });
+        });
+
+        // Initialize Stripe with your publishable key
+        const stripe = Stripe('pk_live_51RR9QRIot8yyc8YFJXoeyE4LnS8v6AdAHUmSyfYNyRPXacZ8j31XCm6NN8G3WJIFGgVGxzXJ7qTvPaSl4qY22CNT00ONGXP02j');
+        const elements = stripe.elements();
+
+        // Create card Element
+        const card = elements.create('card', {
+            style: {
+                base: {
+                    fontSize: '16px',
+                    color: '#32325d',
+                    fontFamily: '"Poppins", sans-serif',
+                    '::placeholder': {
+                        color: '#aab7c4'
+                    }
+                },
+                invalid: {
+                    color: '#dc3545',
+                    iconColor: '#dc3545'
+                }
+            }
+        });
+
+        // Mount the card Element
+        card.mount('#card-element');
+
+        // Handle real-time validation errors
+        card.addEventListener('change', function(event) {
+            const displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+                displayError.classList.add('show');
+            } else {
+                displayError.textContent = '';
+                displayError.classList.remove('show');
+            }
+        });
+
+        // Handle credit card form submission
+        document.getElementById('card-payment-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const submitButton = document.getElementById('submit-payment');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Processing...';
+
+            try {
+                // Create payment method
+                const {paymentMethod, error} = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: card,
+                    billing_details: {
+                        name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
+                        email: document.getElementById('email').value,
+                        address: {
+                            city: document.getElementById('city').value,
+                            state: document.getElementById('state').value,
+                            country: document.getElementById('country').value,
+                            postal_code: document.getElementById('postcode').value
+                        }
+                    }
+                });
+
+                if (error) {
+                    throw error;
+                }
+
+                // Send payment info to your server
+                const response = await fetch('/api/process-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        paymentMethodId: paymentMethod.id,
+                        amount: total,
+                        currency: 'aud',
+                        plan: document.getElementById('plan-select').value,
+                        period: document.getElementById('period-select').value,
+                        customerInfo: {
+                            name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
+                            email: document.getElementById('email').value,
+                            company: document.getElementById('company-name').value,
+                            abn: document.getElementById('abn').value
+                        }
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    const orderRef = 'VO-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                    document.getElementById('order-reference').textContent = orderRef;
+                    currentStep = 4;
+                    showStep(currentStep);
+                } else {
+                    throw new Error(result.error);
+                }
+            } catch (error) {
+                const errorElement = document.getElementById('card-errors');
+                errorElement.textContent = error.message;
+                errorElement.classList.add('show');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Complete Payment';
+            }
+        });
+
+        // Handle bank transfer form submission
+        document.getElementById('bank-payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Generate order reference
+            const orderRef = 'VO-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+            document.getElementById('order-reference').textContent = orderRef;
+            currentStep = 4;
+            showStep(currentStep);
+        });
+    </script>
+</body>
+</html> 
