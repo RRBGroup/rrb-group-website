@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - RRB Group</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .page-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Welcoming field.jpg') no-repeat center center;
+            background-size: cover;
+            color: var(--white);
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+        .contact-grid {
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 0 20px;
+        }
+        .contact-card {
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 32px;
+        }
+        .contact-card h2 {
+            margin-top: 0;
+            margin-bottom: 24px;
+            color: var(--primary-color);
+        }
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 16px;
+            margin-top: 4px;
+        }
+        .info-content h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+        }
+        .info-content p {
+            margin: 0;
+            color: var(--text-color);
+        }
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        .social-links a:hover {
+            background: var(--secondary-color);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .submit-btn:hover {
+            background: var(--secondary-color);
+        }
+        .business-hours {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid #eee;
+        }
+        .business-hours h3 {
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
+        .hours-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+        .map-section {
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        .map-container {
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 32px;
+            text-align: center;
+        }
+        .map-container h2 {
+            margin-top: 0;
+            margin-bottom: 24px;
+            color: var(--primary-color);
+        }
+        .map-frame {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 4px;
+        }
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Welcoming field.jpg') no-repeat center center;
+            background-size: cover;
+            color: var(--white);
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/rrb-logo.png" alt="RRB Group Logo">
+                <span>RRB Group</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="virtual-office.html">Virtual Office</a>
+                        <a href="buyers-agent.html">Buyer's Agent</a>
+                        <a href="import-export.html">Import/Export</a>
+                        <a href="migration.html">Migration & Education</a>
+                        <a href="lab-equipment.html">Lab Equipment</a>
+                        <a href="buying-in-bali.html">Buying in Bali</a>
+                    </div>
+                </div>
+                <a href="about.html">About Us</a>
+                <a href="blog.html">Blog</a>
+                <a href="recommendations.html">Recommendations</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html" class="active">Contact Us</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Get in touch with our team for any inquiries or support</p>
+        </div>
+    </section>
+
+    <main>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h2>Contact Information</h2>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="info-content">
+                        <h3>Headquarters</h3>
+                        <p>St James Trust Building<br>185 Elizabeth St<br>Sydney, NSW 2000</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div class="info-content">
+                        <h3>Phone</h3>
+                        <p>+61 435 892 805</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="info-content">
+                        <h3>Email</h3>
+                        <p>contact@rrbgroup.com</p>
+                    </div>
+                </div>
+                <div class="business-hours">
+                    <h3>Business Hours</h3>
+                    <ul class="hours-list">
+                        <li><span>Monday - Friday:</span> <span>10:00 AM - 5:00 PM</span></li>
+                        <li><span>Saturday:</span> <span>Closed</span></li>
+                        <li><span>Sunday:</span> <span>Closed</span></li>
+                    </ul>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/rrbgroup/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/rrb_group_au?igsh=MTI3dWJpcGoxYTNncw%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h2>Send Us a Message</h2>
+                <form id="contactForm" onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="virtual-office">Virtual Office</option>
+                            <option value="buyers-agent">Buyer's Agent</option>
+                            <option value="import-export">Import/Export</option>
+                            <option value="migration">Migration & Education</option>
+                            <option value="lab-equipment">Lab Equipment</option>
+                            <option value="buying-bali">Buying in Bali</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <div class="map-container">
+                <h2>Our Location</h2>
+                <iframe 
+                    class="map-frame"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.9152927000003!2d151.2063!3d-33.8718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ae3c3b3e3b3f%3A0x6b12ae3c3b3e3b3f!2sSt%20James%20Trust%20Building!5e0!3m2!1sen!2sau!4v1620000000000!5m2!1sen!2sau"
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="virtual-office.html">Virtual Office</a></li>
+                    <li><a href="buyers-agent.html">Buyer's Agent</a></li>
+                    <li><a href="import-export.html">Import/Export</a></li>
+                    <li><a href="migration.html">Migration & Education</a></li>
+                    <li><a href="lab-equipment.html">Lab Equipment</a></li>
+                    <li><a href="buying-in-bali.html">Buying in Bali</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="recommendations.html">Recommendations</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Careers</h4>
+                <ul>
+                    <li><a href="careers.html">Join Our Team</a></li>
+                    <li><a href="careers.html#opportunities">Current Opportunities</a></li>
+                    <li><a href="careers.html#benefits">Benefits</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="footer-contact">
+                    <p>RRB Group Headquarters</p>
+                    <p>St James Trust Building</p>
+                    <p>185 Elizabeth St, Sydney, NSW 2000</p>
+                    <p>Phone: +61 435 892 805</p>
+                    <p>Email: contact@rrbgroup.com</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/rrbgroup/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/rrb_group_au?igsh=MTI3dWJpcGoxYTNncw%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            // Here you would typically handle the form submission
+            // For now, we'll just show a success message
+            alert('Thank you for your message. We will get back to you soon!');
+            document.getElementById('contactForm').reset();
+            return false;
+        }
+    </script>
+</body>
+</html> 

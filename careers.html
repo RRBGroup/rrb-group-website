@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - RRB Group</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .careers-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Welcoming field.jpg') no-repeat center center;
+            background-size: cover;
+            color: var(--white);
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+        .positions-list {
+            max-width: 900px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .position-card {
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 32px;
+        }
+        .position-card h3 {
+            margin-top: 0;
+        }
+        .culture-section {
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 32px;
+            text-align: center;
+        }
+        .apply-section {
+            max-width: 900px;
+            margin: 40px auto 60px;
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 32px;
+            text-align: center;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface);
+            min-width: 200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 0.5rem 0;
+            z-index: 1000;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-menu a:hover {
+            background-color: var(--surface-variant);
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/rrb-logo.png" alt="RRB Group Logo">
+                <span>RRB Group</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="virtual-office.html">Virtual Office</a>
+                        <a href="buyers-agent.html">Buyer's Agent</a>
+                        <a href="import-export.html">Import/Export</a>
+                        <a href="migration.html">Migration & Education</a>
+                        <a href="lab-equipment.html">Lab Equipment</a>
+                        <a href="buying-in-bali.html">Buying in Bali</a>
+                    </div>
+                </div>
+                <a href="about.html">About Us</a>
+                <a href="blog.html">Blog</a>
+                <a href="recommendations.html">Recommendations</a>
+                <a href="careers.html" class="active">Careers</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="careers-hero">
+        <div class="container">
+            <h1>Careers at RRB Group</h1>
+            <p>Join our team and help shape the future of business solutions</p>
+        </div>
+    </section>
+    <main>
+        <div class="culture-section">
+            <h2>Our Culture</h2>
+            <p>At RRB Group, we value innovation, collaboration, and a commitment to excellence. We foster a supportive environment where every team member can grow and make an impact. Join us and be part of a dynamic, forward-thinking company.</p>
+        </div>
+        <div class="apply-section">
+            <h2>Interested in joining us?</h2>
+            <p>Email your CV and cover letter to <a href="mailto:careers@rrbgroup.com">careers@rrbgroup.com</a></p>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="virtual-office.html">Virtual Office</a></li>
+                    <li><a href="buyers-agent.html">Buyer's Agent</a></li>
+                    <li><a href="import-export.html">Import/Export</a></li>
+                    <li><a href="migration.html">Migration & Education</a></li>
+                    <li><a href="lab-equipment.html">Lab Equipment</a></li>
+                    <li><a href="buying-in-bali.html">Buying in Bali</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="recommendations.html">Recommendations</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Careers</h4>
+                <ul>
+                    <li><a href="careers.html">Join Our Team</a></li>
+                    <li><a href="careers.html#opportunities">Current Opportunities</a></li>
+                    <li><a href="careers.html#benefits">Benefits</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="footer-contact">
+                    <p>RRB Group Headquarters</p>
+                    <p>St James Trust Building</p>
+                    <p>185 Elizabeth St, Sydney, NSW 2000</p>
+                    <p>Phone: +61 435 892 805</p>
+                    <p>Email: contact@rrbgroup.com</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/rrbgroup/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/rrb_group_au?igsh=MTI3dWJpcGoxYTNncw%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>
+    // Contact Toggle Functionality for Careers
+    const contactToggleCareers = document.querySelector('.contact-toggle-btn');
+    const contactPopupCareers = document.querySelector('.contact-popup');
+    const closePopupCareers = document.querySelector('.close-popup');
+    const contactFormCareers = document.getElementById('contactForm-careers');
+
+    contactToggleCareers.addEventListener('click', () => {
+        contactPopupCareers.classList.add('active');
+    });
+    closePopupCareers.addEventListener('click', () => {
+        contactPopupCareers.classList.remove('active');
+    });
+    contactPopupCareers.addEventListener('click', (e) => {
+        if (e.target === contactPopupCareers) {
+            contactPopupCareers.classList.remove('active');
+        }
+    });
+    contactFormCareers.addEventListener('submit', (e) => {
+        e.preventDefault();
+        contactPopupCareers.classList.remove('active');
+        contactFormCareers.reset();
+        alert('Thank you for your message. We will get back to you soon!');
+    });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - RRB Group</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .page-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Welcoming field.jpg') no-repeat center center;
+            background-size: cover;
+            color: var(--white);
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/rrb-logo.png" alt="RRB Group Logo">
+                <span>RRB Group</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="virtual-office.html">Virtual Office</a>
+                        <a href="buyers-agent.html">Buyer's Agent</a>
+                        <a href="import-export.html">Import/Export</a>
+                        <a href="migration.html">Migration & Education</a>
+                        <a href="lab-equipment.html">Lab Equipment</a>
+                        <a href="buying-in-bali.html">Buying in Bali</a>
+                    </div>
+                </div>
+                <a href="about.html" class="active">About Us</a>
+                <a href="blog.html">Blog</a>
+                <a href="recommendations.html">Recommendations</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contact Toggle Button -->
+    <div class="contact-toggle">
+        <button class="contact-toggle-btn">
+            <i class="fas fa-headset"></i>
+            <span>How can we help?</span>
+        </button>
+        <div class="contact-popup">
+            <div class="contact-popup-content">
+                <button class="close-popup">×</button>
+                <h2>Contact Us</h2>
+                <div class="contact-info-popup">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+61 435 892 805">+61 435 892 805</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:contact@rrbgroup.com">contact@rrbgroup.com</a>
+                    </div>
+                </div>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required>About us</textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <h1>About RRB Group</h1>
+                <p>Your Trusted Partner in Business Solutions</p>
+            </div>
+        </section>
+
+        <!-- Company Story -->
+        <section class="company-story">
+            <div class="container">
+                <h2 style="text-align: left;">Our Story</h2>
+                <div class="story-content">
+                    <div class="story-text">
+                        <p>RRB Group was founded with a vision to provide comprehensive business solutions that empower companies to thrive in today's dynamic market. Our journey began with a commitment to excellence and has evolved into a trusted partnership with businesses across various sectors.</p>
+                        <p>Today, we continue to grow and adapt, always staying ahead of market trends and innovations to provide our clients with the best possible services and solutions.</p>
+                    </div>
+                    <div class="story-image" style="text-align: center; margin: 2rem 0;">
+                        <img src="images/Entry.jpg" alt="RRB Group Office" style="max-width:50%;height:auto;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Values -->
+        <section class="values">
+            <div class="container">
+                <h2 style="text-align: left;">Our Values</h2>
+                <div class="values-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem auto; max-width: 900px;">
+                    <div class="value-card" style="background: var(--surface); padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 250px; margin: 0 auto;">
+                        <i class="fas fa-handshake" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.75rem;"></i>
+                        <h3>Integrity</h3>
+                        <p>We conduct our business with the highest standards of professional ethics and transparency.</p>
+                    </div>
+                    <div class="value-card" style="background: var(--surface); padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 250px; margin: 0 auto;">
+                        <i class="fas fa-lightbulb" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.75rem;"></i>
+                        <h3>Innovation</h3>
+                        <p>We continuously seek new ways to improve and provide cutting-edge solutions.</p>
+                    </div>
+                    <div class="value-card" style="background: var(--surface); padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 250px; margin: 0 auto;">
+                        <i class="fas fa-users" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.75rem;"></i>
+                        <h3>Collaboration</h3>
+                        <p>We believe in the power of teamwork and building strong relationships with our clients.</p>
+                    </div>
+                </div>
+                <div class="values-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2rem auto; max-width: 250px;">
+                    <div class="value-card" style="background: var(--surface); padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.75rem;"></i>
+                        <h3>Excellence</h3>
+                        <p>We strive for excellence in everything we do, ensuring the highest quality of service.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team">
+            <div class="container">
+                <h2 style="text-align: left;">Our Leadership Team</h2>
+                <div class="team-content" style="display: flex; flex-direction: column; align-items: center; margin: 2rem auto; max-width: 600px;">
+                    <div class="team-member" style="text-align: center; margin-bottom: 1rem;">
+                        <img src="images/BR.jpg" alt="Brayan Rodriguez" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+                        <h3>Brayan Rodriguez</h3>
+                        <p class="position">Founder</p>
+                        <p class="bio">Brayan Rodriguez leads RRB Group with a focus on innovative business solutions, international trade, and client success. Connect on <a href="https://www.linkedin.com/in/brayanrodriguezr/" target="_blank">LinkedIn</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2rem auto; max-width: 500px;">
+                    <div class="stat-card" style="background: var(--surface); padding: 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 180px; margin: 0 auto;">
+                        <h3>8+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat-card" style="background: var(--surface); padding: 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 180px; margin: 0 auto;">
+                        <h3>4+</h3>
+                        <p>Team Members</p>
+                    </div>
+                    <div class="stat-card" style="background: var(--surface); padding: 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 180px; margin: 0 auto;">
+                        <h3>6</h3>
+                        <p>Integrated Business Segments</p>
+                    </div>
+                    <div class="stat-card" style="background: var(--surface); padding: 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 180px; margin: 0 auto;">
+                        <h3>3+</h3>
+                        <p>Countries Served</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="virtual-office.html">Virtual Office</a></li>
+                    <li><a href="buyers-agent.html">Buyer's Agent</a></li>
+                    <li><a href="import-export.html">Import/Export</a></li>
+                    <li><a href="migration.html">Migration & Education</a></li>
+                    <li><a href="lab-equipment.html">Lab Equipment</a></li>
+                    <li><a href="buying-in-bali.html">Buying in Bali</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="recommendations.html">Recommendations</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Careers</h4>
+                <ul>
+                    <li><a href="careers.html">Join Our Team</a></li>
+                    <li><a href="careers.html#opportunities">Current Opportunities</a></li>
+                    <li><a href="careers.html#benefits">Benefits</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="footer-contact">
+                    <p>RRB Group Headquarters</p>
+                    <p>123 Business Avenue</p>
+                    <p>City, Country</p>
+                    <p>Phone: +1 234 567 890</p>
+                    <p>Email: contact@rrbgroup.com</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/rrbgroup/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/rrb_group_au?igsh=MTI3dWJpcGoxYTNncw%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <style>
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--surface);
+        min-width: 200px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        padding: 0.5rem 0;
+        z-index: 1000;
+    }
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    .dropdown-menu a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 400;
+        transition: background-color 0.3s ease;
+    }
+    .dropdown-menu a:hover {
+        background-color: var(--surface-variant);
+        color: var(--accent-color);
+    }
+    </style>
+    <script>
+        // Mobile Menu Functionality
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const dropdowns = document.querySelectorAll('.dropdown');
+        const contactToggle = document.querySelector('.contact-toggle-btn');
+        const contactPopup = document.querySelector('.contact-popup');
+        const closePopup = document.querySelector('.close-popup');
+        const contactForm = document.getElementById('contactForm');
+        const messageInput = document.getElementById('message');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Contact Toggle Functionality
+        const openContactPopup = () => {
+            contactPopup.classList.add('active');
+        };
+        contactToggle.addEventListener('click', openContactPopup);
+        closePopup.addEventListener('click', () => {
+            contactPopup.classList.remove('active');
+        });
+        contactPopup.addEventListener('click', (e) => {
+            if (e.target === contactPopup) {
+                contactPopup.classList.remove('active');
+            }
+        });
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            console.log('Form submitted:', Object.fromEntries(formData));
+            contactPopup.classList.remove('active');
+            contactForm.reset();
+            alert('Thank you for your message. We will get back to you soon!');
+        });
+    </script>
+</body>
+</html> 

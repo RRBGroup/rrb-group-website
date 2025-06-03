@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer's Agent - RRB Group</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="js/products.js" defer></script>
+    <style>
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Welcoming field.jpg') no-repeat center center;
+            background-size: cover;
+            color: var(--white);
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+
+        .service-content {
+            padding: 50px 0;
+            background: var(--background);
+        }
+
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-card ul li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-card ul li:before {
+            content: "✓";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .benefits-section {
+            padding: 80px 0;
+            background: var(--surface-variant);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-item {
+            background: var(--white);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-item i {
+            color: var(--accent-color);
+        }
+
+        .process-section {
+            padding: 80px 0;
+            background: var(--background);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .process-step {
+            background: var(--white);
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .step-number {
+            background: var(--accent-color);
+            width: 40px;
+            height: 40px;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #003366 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-highlights {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .highlight-point {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.2em;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            border-radius: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-point:hover {
+            transform: translateY(-3px);
+        }
+
+        .highlight-point i {
+            color: #4CAF50;
+            font-size: 1.4em;
+        }
+
+        .cta-motivation {
+            font-size: 1.2em;
+            margin: 30px 0;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .contact-toggle {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            z-index: 1000;
+        }
+
+        .contact-toggle-btn {
+            background: rgb(0, 31, 63) !important;
+            color: var(--white);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .contact-toggle-btn i {
+            font-size: 1.8rem;
+        }
+
+        .contact-toggle-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-popup {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 15px);
+            right: 0;
+            width: 400px;
+            background: transparent;
+            z-index: 1001;
+        }
+
+        .contact-popup.active {
+            display: block;
+        }
+
+        .contact-popup-content {
+            background: var(--surface);
+            padding: 25px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-popup-content::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid var(--surface);
+        }
+
+        .contact-popup-content h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .contact-info-popup {
+            margin: 15px 0;
+            padding: 15px;
+            background: var(--surface-variant);
+            border-radius: 8px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        .contact-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .contact-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .virtual-office-cta {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .virtual-office-cta p {
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .virtual-office-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .virtual-office-link:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface);
+            min-width: 200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--surface);
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                padding-left: 1rem;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: none;
+            }
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background: var(--surface);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface);
+            min-width: 220px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--surface-variant);
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--surface);
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                padding-left: 1rem;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: none;
+            }
+
+            .dropdown-toggle {
+                justify-content: space-between;
+            }
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+            background: none;
+            border-radius: 0;
+            padding: 0;
+            font-size: 1.1em;
+        }
+
+        .contact-info-popup {
+            margin: 15px 0;
+            padding: 10px;
+            background: var(--surface-variant);
+            border-radius: 4px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .contact-item a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <img src="images/rrb-logo.png" alt="RRB Group Logo">
+                    <span>RRB Group</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="virtual-office.html">Virtual Office</a>
+                            <a href="buyers-agent.html">Buyer's Agent</a>
+                            <a href="import-export.html">Import/Export</a>
+                            <a href="migration.html">Migration & Education</a>
+                            <a href="lab-equipment.html">Lab Equipment</a>
+                            <a href="buying-in-bali.html">Buying in Bali</a>
+                        </div>
+                    </div>
+                    <a href="about.html">About Us</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="recommendations.html">Recommendations</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Contact Toggle Button -->
+        <div class="contact-toggle">
+            <button class="contact-toggle-btn">
+                <i class="fas fa-headset"></i>
+                <span>How can we help?</span>
+            </button>
+            <div class="contact-popup">
+                <div class="contact-popup-content">
+                    <button class="close-popup">×</button>
+                    <h2>Contact Us</h2>
+                    <div class="contact-info-popup">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+61 435 892 805">Call: +61 435 892 805</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:contact@rrbgroup.com">Email: contact@rrbgroup.com</a>
+                        </div>
+                    </div>
+                    <div class="virtual-office-cta">
+                        <p>Ready to establish your business presence?</p>
+                        <a href="virtual-office.html#pricing-section" class="virtual-office-link">Choose Your Virtual Office Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Banner Section -->
+        <section class="service-header">
+            <div class="container">
+                <h1>Buyer's Agent Services</h1>
+                <p>Expert guidance from a successful property investor.</p>
+            </div>
+        </section>
+
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <!-- Removed content: Property Investment Specialist and Expert Guidance -->
+            </div>
+        </section>
+
+        <!-- Service Overview -->
+        <section class="service-overview">
+            <div class="container">
+                <div class="service-content">
+                    <div class="service-description">
+                        <h2>Learn from Real Experience</h2>
+                        <p>As a successful property investor who has built my own portfolio from the ground up, I provide practical, proven strategies for property investment success. My advice comes from real-world experience, not just theory.</p>
+                        
+                        <div class="benefits-grid">
+                            <div class="benefit-card">
+                                <i class="fas fa-home"></i>
+                                <h3>Property Investment</h3>
+                                <p>Strategic guidance in buying and selling residential properties based on proven success.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-chart-pie"></i>
+                                <h3>Portfolio Building</h3>
+                                <p>Structured approach to creating and growing your property portfolio, based on my personal investment journey.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <h3>Mortgage Services</h3>
+                                <p>Expert mortgage broker services to secure the best financing options for your investments.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-tasks"></i>
+                                <h3>Investment Strategy</h3>
+                                <p>Personalized investment strategies based on proven portfolio-building techniques.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Experience Section -->
+        <section class="experience-section">
+            <div class="container">
+                <h2>My Investment Journey</h2>
+                <div class="experience-content">
+                    <p class="highlight-text">At 31 years old, I've achieved what many thought impossible - purchasing three properties within just one year on a single income. Having been in Australia for 9 years, I've learned to navigate the property market and build wealth through smart investment strategies.</p>
+                    <p class="motivation-text">If I could do it, so can you. My journey proves that with the right guidance, strategy, and determination, building a property portfolio is achievable - even as a single income earner in a new country.</p>
+                    <div class="achievements-grid">
+                        <div class="achievement">
+                            <div class="achievement-number">8+</div>
+                            <p>Years of Property Experience</p>
+                        </div>
+                        <div class="achievement">
+                            <div class="achievement-number">3</div>
+                            <p>Properties in One Year</p>
+                        </div>
+                        <div class="achievement">
+                            <div class="achievement-number">100%</div>
+                            <p>Single Income Success</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section">
+            <div class="container">
+                <h2>How We Work Together</h2>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Strategy Session</h3>
+                        <p>Understanding your goals and developing a personalized investment strategy</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Property Search</h3>
+                        <p>Identifying properties that match your investment criteria</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Financial Planning</h3>
+                        <p>Structuring finances and securing optimal mortgage terms</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Purchase Support</h3>
+                        <p>Managing the purchase process from offer to settlement</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <h3>Portfolio Growth</h3>
+                        <p>Ongoing support and strategy refinement for portfolio expansion</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq bg-light">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>How much deposit do I need to start investing?</h3>
+                        <p>This varies depending on the property and your circumstances, but we can help structure your finances to maximize your borrowing capacity.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can you help with investment strategy if I already own property?</h3>
+                        <p>Yes, we specialize in helping both new and experienced investors optimize their portfolios and plan for growth.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How do your mortgage broking services work?</h3>
+                        <p>I work closely with trusted mortgage brokers who have been instrumental in my own property investment journey. These are professionals I personally know and have successfully worked with, ensuring you get reliable, transparent service backed by real experience.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What areas do you service?</h3>
+                        <p>We provide property investment guidance across Australia, helping investors identify opportunities in various markets nationwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Start Your Property Investment Journey?</h2>
+                    <div class="cta-highlights">
+                        <div class="highlight-point">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Learn from real experience, not just theory</span>
+                        </div>
+                        <div class="highlight-point">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Proven strategies that worked for a single-income investor</span>
+                        </div>
+                        <div class="highlight-point">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Transform your property investment dreams into reality</span>
+                        </div>
+                    </div>
+                    <p class="cta-motivation">If I could build a property portfolio as a single-income earner new to Australia, imagine what you could achieve with the right guidance.</p>
+                    <button class="cta-button">Schedule Your Free Strategy Session Today</button>
+                    <p class="form-note" style="margin-top: 10px; font-size: 0.9em; color: var(--accent-color);">* Please type "Buyer's Agent" in the message section when contacting us</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="virtual-office.html">Virtual Office</a></li>
+                    <li><a href="buyers-agent.html">Buyer's Agent</a></li>
+                    <li><a href="import-export.html">Import/Export</a></li>
+                    <li><a href="migration.html">Migration & Education</a></li>
+                    <li><a href="lab-equipment.html">Lab Equipment</a></li>
+                    <li><a href="buying-in-bali.html">Buying in Bali</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="recommendations.html">Recommendations</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Careers</h4>
+                <ul>
+                    <li><a href="careers.html">Join Our Team</a></li>
+                    <li><a href="careers.html#opportunities">Current Opportunities</a></li>
+                    <li><a href="careers.html#benefits">Benefits</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="footer-contact">
+                    <p>RRB Group Headquarters</p>
+                    <p>St James Trust Building</p>
+                    <p>185 Elizabeth St, Sydney, NSW 2000</p>
+                    <p>Phone: +61 435 892 805</p>
+                    <p>Email: contact@rrbgroup.com</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/rrbgroup/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/rrb_group_au?igsh=MTI3dWJpcGoxYTNncw%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Functionality
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Close all dropdowns when toggling mobile menu
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+
+        // Updated dropdown functionality
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    // Close other dropdowns
+                    dropdowns.forEach(d => {
+                        if (d !== dropdown) {
+                            d.classList.remove('active');
+                        }
+                    });
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Close dropdowns when clicking a dropdown link
+        document.querySelectorAll('.dropdown-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                // Also close mobile menu if open
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Reset dropdown states when page loads
+        window.addEventListener('load', () => {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            navLinks.classList.remove('active');
+        });
+
+        // Contact Toggle Functionality (from home page)
+        const contactToggle = document.querySelector('.contact-toggle-btn');
+        const contactPopup = document.querySelector('.contact-popup');
+        const closePopup = document.querySelector('.close-popup');
+        contactToggle.addEventListener('click', () => {
+            contactPopup.classList.add('active');
+        });
+        closePopup.addEventListener('click', () => {
+            contactPopup.classList.remove('active');
+        });
+        contactPopup.addEventListener('click', (e) => {
+            if (e.target === contactPopup) {
+                contactPopup.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRB Group - Professional Business Services</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('images/Welcoming field.jpg') center center/cover no-repeat;
+            color: var(--white);
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: var(--surface);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: var(--surface-variant);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: var(--background);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--surface);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--surface-variant);
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent-color);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            opacity: 0.2;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta h2 {
+            margin-bottom: 30px;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background: var(--surface);
+            padding: 1rem 0;
+            position: fixed;
+        
+            
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+         
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface);
+            min-width: 220px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--surface-variant);
+            color: var(--accent-color);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 8px 0;
+        }
+
+        /* Contact Toggle Styles */
+        .contact-toggle {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            z-index: 1000;
+        }
+
+        .contact-toggle-btn {
+            background: rgb(51, 51, 51);
+            color: var(--white);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .contact-toggle-btn i {
+            font-size: 1.8rem;
+        }
+
+        .contact-toggle-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-popup {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 15px);
+            right: 0;
+            width: 400px;
+            background: transparent;
+            z-index: 1001;
+        }
+
+        .contact-popup.active {
+            display: block;
+        }
+
+        .contact-popup-content {
+            background: var(--surface);
+            padding: 25px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-popup-content::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid var(--surface);
+        }
+
+        .contact-popup-content h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .contact-info-popup {
+            margin: 15px 0;
+            padding: 15px;
+            background: var(--surface-variant);
+            border-radius: 8px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        .contact-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .contact-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .virtual-office-cta {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .virtual-office-cta p {
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .virtual-office-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .virtual-office-link:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--surface);
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                padding-left: 20px;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-toggle {
+                justify-content: space-between;
+            }
+        }
+
+        .news-ticker {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            background: #f5f5f5;
+            color: #222;
+            border-radius: 4px;
+            padding: 10px 0;
+            margin-top: 10px;
+            position: relative;
+            font-size: 1rem;
+        }
+        .news-ticker span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 80s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .news-ticker a {
+            color: #0077c2;
+            text-decoration: none;
+            margin: 0 2rem;
+        }
+        .news-ticker a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/rrb-logo.png" alt="RRB Group Logo">
+                <span>RRB Group</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="virtual-office.html">Virtual Office</a>
+                        <a href="buyers-agent.html">Buyer's Agent</a>
+                        <a href="import-export.html">Import/Export</a>
+                        <a href="migration.html">Migration & Education</a>
+                        <a href="lab-equipment.html">Lab Equipment</a>
+                        <a href="buying-in-bali.html">Buying in Bali</a>
+                    </div>
+                </div>
+                <a href="about.html">About Us</a>
+                <a href="blog.html">Blog</a>
+                <a href="recommendations.html">Recommendations</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Toggle Button -->
+    <div class="contact-toggle">
+        <button class="contact-toggle-btn">
+            <i class="fas fa-headset"></i>
+            <span>How can we help?</span>
+        </button>
+        <div class="contact-popup">
+            <div class="contact-popup-content">
+                <button class="close-popup">×</button>
+                <h2>Contact Us</h2>
+                <div class="contact-info-popup">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+61 435 892 805">Call: +61 435 892 805</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:contact@rrbgroup.com">Email: contact@rrbgroup.com</a>
+                    </div>
+                </div>
+                <div class="virtual-office-cta">
+                    <p>Ready to establish your business presence?</p>
+                    <a href="virtual-office.html#pricing-section" class="virtual-office-link">Choose Your Virtual Office Plan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Welcome to RRB Group</h1>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="text-center">Our Products & Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-building"></i>
+                        <h3>Virtual Office</h3>
+                        <p>Professional business address and mail handling services for your company.</p>
+                        <a href="virtual-office.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Buyer's Agent</h3>
+                        <p>Expert guidance in business acquisitions and property investments.</p>
+                        <a href="buyers-agent.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-home"></i>
+                        <h3>Buying in Bali</h3>
+                        <p>Expert guidance for property investments in Bali's prime locations.</p>
+                        <a href="buying-in-bali.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Migration & Education</h3>
+                        <p>Australian migration and education consulting services.</p>
+                        <a href="migration.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-flask"></i>
+                        <h3>Lab Equipment</h3>
+                        <p>Quality laboratory equipment and supplies for research facilities.</p>
+                        <a href="lab-equipment.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>Import/Export Solutions</h3>
+                        <p>Comprehensive international trade and logistics services.</p>
+                        <a href="import-export.html" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>About RRB Group</h2>
+                        <p>RRB Group is a leading young business solutions provider based in Sydney, Australia, specializing in business consulting and services. With a dedicated team led by Project Manager and Engineer Brayan Rodriguez, we are committed to delivering exceptional value to our clients. Our expertise spans business services, international trade, property investment, and more. We pride ourselves on our innovative approach, client-focused solutions, and a strong network of industry partners. Discover how RRB Group can help your business thrive in today's competitive market.</p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <h3>8+</h3>
+                                <p>Years Experience</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>4+</h3>
+                                <p>Expert Team</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>6</h3>
+                                <p>International Service Verticals</p>
+                            </div>
+                        </div>
+                        <p style="margin-top:1rem;">Learn more about our team leader <a href="https://www.linkedin.com/in/brayanrodriguezr/" target="_blank">Brayan Rodriguez</a>.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="images/Office Temp.jpg" alt="RRB Group Office">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest News Section -->
+        <section class="news-section">
+            <div class="container">
+                <h2>Latest News</h2>
+                <div class="blog-grid">
+                    <div class="blog-card" style="width:100%;margin-bottom:2rem;">
+                        <!-- TradingView News Widget BEGIN -->
+                        <div class="tradingview-widget-container" style="display: flex; justify-content: center;">
+                          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async></script>
+                          <script type="text/javascript">
+                            new TradingView.widget({
+                              "feedMode": "all_symbols",
+                              "isTransparent": false,
+                              "displayMode": "regular",
+                              "width": "75%",
+                              "height": "500",
+                              "colorTheme": "light",
+                              "locale": "en"
+                            });
+                          </script>
+                        </div>
+                        <!-- TradingView News Widget END -->
+                    </div>
+                    <div class="blog-card" style="width:100%;">
+                        <!-- TradingView Indices Widget BEGIN -->
+                        <div class="tradingview-widget-container" style="display: flex; justify-content: center;">
+                          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async></script>
+                          <script type="text/javascript">
+                            new TradingView.widget({
+                              "colorTheme": "light",
+                              "dateRange": "12M",
+                              "showChart": true,
+                              "locale": "en",
+                              "width": "75%",
+                              "height": "400",
+                              "largeChartUrl": "",
+                              "isTransparent": false,
+                              "showSymbolLogo": true,
+                              "plotLineColorGrowing": "rgba(33, 150, 243, 1)",
+                              "plotLineColorFalling": "rgba(33, 150, 243, 1)",
+                              "gridLineColor": "rgba(240, 243, 250, 0)",
+                              "scaleFontColor": "rgba(120, 123, 134, 1)",
+                              "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
+                              "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
+                              "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
+                              "tabs": [
+                                {
+                                  "title": "Indices",
+                                  "symbols": [
+                                    {"s": "FOREXCOM:SPXUSD", "d": "S&P 500"},
+                                    {"s": "FOREXCOM:NSXUSD", "d": "Nasdaq 100"},
+                                    {"s": "FOREXCOM:DJI", "d": "Dow 30"},
+                                    {"s": "INDEX:NKY", "d": "Nikkei 225"},
+                                    {"s": "INDEX:DEU40", "d": "DAX"},
+                                    {"s": "FOREXCOM:UKXGBP", "d": "FTSE 100"}
+                                  ],
+                                  "originalTitle": "Indices"
+                                }
+                              ]
+                            });
+                          </script>
+                        </div>
+                        <!-- TradingView Indices Widget END -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Quality Service</h3>
+                        <p>Our work is based on thorough analysis of your financial situation</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Prime Location</h3>
+                        <p>Strategically located to serve you better</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>People First</h3>
+                        <p>We value our clients and carefully listen to their needs</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Experience</h3>
+                        <p>Proven track record with numerous satisfied clients</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recommendations">
+            <div class="container">
+                <h2>Client Recommendations</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p>"RRB Group's virtual office solution has been instrumental in our company's growth. Professional service and excellent support."</p>
+                        <div class="testimonial-author">
+                            <strong>Alexander Jatowtt</strong>
+                            <span>Director, Rinek60</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Their business services have helped us streamline our operations Australia - working together is promising."</p>
+                        <div class="testimonial-author">
+                            <strong>Anderson Otalora</strong>
+                            <span>Director, Fisicoquimica </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Updated Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="virtual-office.html">Virtual Office</a></li>
+                    <li><a href="buyers-agent.html">Buyer's Agent</a></li>
+                    <li><a href="import-export.html">Import/Export</a></li>
+                    <li><a href="migration.html">Migration & Education</a></li>
+                    <li><a href="lab-equipment.html">Lab Equipment</a></li>
+                    <li><a href="buying-in-bali.html">Buying in Bali</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="recommendations.html">Recommendations</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Careers</h4>
+                <ul>
+                    <li><a href="careers.html">Join Our Team</a></li>
+                    <li><a href="careers.html#opportunities">Current Opportunities</a></li>
+                    <li><a href="careers.html#benefits">Benefits</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="footer-contact">
+                    <p>RRB Group Headquarters</p>
+                    <p>St James Trust Building</p>
+                    <p>185 Elizabeth St, Sydney, NSW 2000</p>
+                    <p>Phone: +61 435 892 805</p>
+                    <p>Email: contact@rrbgroup.com</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/rrbgroup/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/rrb_group_au?igsh=MTI3dWJpcGoxYTNncw%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://finance.yahoo.com/news/rssindex')
+      .then(response => response.json())
+      .then(data => {
+        const ticker = document.getElementById('news-ticker');
+        if (data.status === 'ok') {
+          const headlines = data.items.slice(0, 10).map(item => {
+            const img = item.enclosure ? `<img src="${item.enclosure.link}" alt="" style="height:24px;vertical-align:middle;margin-right:8px;border-radius:3px;">` : '';
+            return `<span style="display:inline-flex;align-items:center;"><a href="${item.link}" target="_blank" rel="noopener">${img}${item.title}</a></span>`;
+          }).join(' <span style="color:#ccc;">|</span> ');
+          ticker.innerHTML = `<span>${headlines}</span>`;
+        } else {
+          ticker.innerHTML = '<span>Unable to load news at this time.</span>';
+        }
+      })
+      .catch(() => {
+        document.getElementById('news-ticker').innerHTML = '<span>Unable to load news at this time.</span>';
+      });
+    </script>
+</body>
+</html> 

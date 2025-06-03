@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - RRB Group</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Welcoming field.jpg') no-repeat center center;
+            background-size: cover;
+            color: var(--white);
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+        .blog-list {
+            max-width: 900px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .blog-card {
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 32px;
+        }
+        .blog-card h2 {
+            margin-top: 0;
+        }
+        .blog-card .meta {
+            color: var(--text-color-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface);
+            min-width: 200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 0.5rem 0;
+            z-index: 1000;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-menu a:hover {
+            background-color: var(--surface-variant);
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/rrb-logo.png" alt="RRB Group Logo">
+                <span>RRB Group</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="virtual-office.html">Virtual Office</a>
+                        <a href="buyers-agent.html">Buyer's Agent</a>
+                        <a href="import-export.html">Import/Export</a>
+                        <a href="migration.html">Migration & Education</a>
+                        <a href="lab-equipment.html">Lab Equipment</a>
+                        <a href="buying-in-bali.html">Buying in Bali</a>
+                    </div>
+                </div>
+                <a href="about.html">About Us</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="recommendations.html">Recommendations</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <section class="blog-hero">
+        <div class="container">
+            <h1>RRB Group Blog</h1>
+            <p>Insights, trends, and strategies for business success</p>
+        </div>
+    </section>
+
+    <!-- Contact Toggle Button -->
+    <div class="contact-toggle">
+        <button class="contact-toggle-btn">
+            <i class="fas fa-headset"></i>
+            <span>How can we help?</span>
+        </button>
+        <div class="contact-popup">
+            <div class="contact-popup-content">
+                <button class="close-popup">×</button>
+                <h2>Contact Us</h2>
+                <div class="contact-info-popup">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+61 435 892 805">+61 435 892 805</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:contact@rrbgroup.com">contact@rrbgroup.com</a>
+                    </div>
+                </div>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required>Blog</textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="blog-list">
+            <div class="blog-card">
+                <h2>The Power of Professional Property Investment Teams</h2>
+                <div class="meta">Published: July 2024 | By RRB Group</div>
+                <p>Successful property investment isn't just about finding the right property—it's about assembling the right team. A professional property investment team brings together expertise in market analysis, legal compliance, financial planning, and property management. At RRB Group, we understand that each team member plays a crucial role in maximizing returns and minimizing risks. From experienced buyers' agents who identify undervalued opportunities to legal experts who ensure compliance with local regulations, the right team can make the difference between a mediocre investment and an outstanding one. Learn how our comprehensive approach to property investment can help you build a robust portfolio with confidence.</p>
+            </div>
+            <div class="blog-card">
+                <h2>Global Property Portfolio Diversification: A Strategic Approach</h2>
+                <div class="meta">Published: July 2024 | By RRB Group</div>
+                <p>Diversifying your property portfolio across international markets offers numerous advantages, from risk mitigation to currency diversification and access to emerging market opportunities. However, successful overseas property investment requires careful consideration of local market dynamics, regulatory frameworks, and cultural factors. At RRB Group, we specialize in helping investors navigate the complexities of international property markets, particularly in emerging destinations like Bali. Our expertise in cross-border transactions, local market knowledge, and established networks ensures that your overseas property investments are both strategic and secure. Discover how international property diversification can enhance your investment returns while providing a hedge against domestic market fluctuations.</p>
+            </div>
+            <div class="blog-card">
+                <h2>How AI is Transforming Business Consulting</h2>
+                <div class="meta">Published: July 2024 | By RRB Group</div>
+                <p>Artificial Intelligence is revolutionizing the consulting industry by enabling data-driven decision making, automating routine tasks, and providing deeper insights into market trends. At RRB Group, we leverage AI tools to help our clients optimize operations, identify new opportunities, and stay ahead of the competition. The future of consulting is digital, and embracing AI is key to sustainable growth.</p>
+            </div>
+            <div class="blog-card">
+                <h2>Expanding Internationally: Key Considerations for Australian Businesses</h2>
+                <div class="meta">Published: July 2024 | By RRB Group</div>
+                <p>International expansion offers significant growth potential, but it also comes with challenges such as regulatory compliance, cultural differences, and supply chain complexities. Our team at RRB Group guides clients through every step, from market research to establishing local partnerships, ensuring a smooth and successful entry into new markets.</p>
+            </div>
+            <div class="blog-card">
+                <h2>Virtual Offices: The Future of Flexible Workspaces</h2>
+                <div class="meta">Published: July 2024 | By RRB Group</div>
+                <p>The rise of remote work has made virtual offices an essential solution for modern businesses. Virtual offices provide a prestigious address, professional services, and cost savings without the need for a physical presence. Discover how RRB Group's virtual office solutions can help your business stay agile and competitive in a rapidly changing world.</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="virtual-office.html">Virtual Office</a></li>
+                    <li><a href="buyers-agent.html">Buyer's Agent</a></li>
+                    <li><a href="import-export.html">Import/Export</a></li>
+                    <li><a href="migration.html">Migration & Education</a></li>
+                    <li><a href="lab-equipment.html">Lab Equipment</a></li>
+                    <li><a href="buying-in-bali.html">Buying in Bali</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="recommendations.html">Recommendations</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Careers</h4>
+                <ul>
+                    <li><a href="careers.html">Join Our Team</a></li>
+                    <li><a href="careers.html#opportunities">Current Opportunities</a></li>
+                    <li><a href="careers.html#benefits">Benefits</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="footer-contact">
+                    <p>RRB Group Headquarters</p>
+                    <p>St James Trust Building</p>
+                    <p>185 Elizabeth St, Sydney, NSW 2000</p>
+                    <p>Phone: +61 435 892 805</p>
+                    <p>Email: contact@rrbgroup.com</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/rrbgroup/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/rrb_group_au?igsh=MTI3dWJpcGoxYTNncw%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>
+        // Mobile Menu Functionality
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const dropdowns = document.querySelectorAll('.dropdown');
+        const contactToggle = document.querySelector('.contact-toggle-btn');
+        const contactPopup = document.querySelector('.contact-popup');
+        const closePopup = document.querySelector('.close-popup');
+        const contactForm = document.getElementById('contactForm');
+        const messageInput = document.getElementById('message');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Contact Toggle Functionality
+        const openContactPopup = () => {
+            contactPopup.classList.add('active');
+        };
+        contactToggle.addEventListener('click', openContactPopup);
+        closePopup.addEventListener('click', () => {
+            contactPopup.classList.remove('active');
+        });
+        contactPopup.addEventListener('click', (e) => {
+            if (e.target === contactPopup) {
+                contactPopup.classList.remove('active');
+            }
+        });
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            console.log('Form submitted:', Object.fromEntries(formData));
+            contactPopup.classList.remove('active');
+            contactForm.reset();
+            alert('Thank you for your message. We will get back to you soon!');
+        });
+    </script>
+</body>
+</html> 
