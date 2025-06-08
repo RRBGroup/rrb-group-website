@@ -72,22 +72,54 @@
             padding: 0.5rem 1rem;
         }
 
+        /* Mobile Menu Toggle */
         .mobile-menu-toggle {
             display: none;
             flex-direction: column;
-            gap: 6px;
-            background: none;
-            border: none;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: var(--surface);
+            border: 1px solid rgb(0, 31, 63);
+            border-radius: 8px;
             cursor: pointer;
-            padding: 5px;
+            padding: 8px;
+            transition: all 0.3s ease;
         }
 
-        .mobile-menu-toggle span {
+        .mobile-menu-toggle__bar {
             display: block;
-            width: 25px;
+            width: 24px;
             height: 2px;
-            background: var(--text-color);
-            transition: 0.3s;
+            background: rgb(0, 31, 63) !important;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+            box-shadow: 0 0 0 1px rgb(0, 31, 63);
+        }
+
+        /* Override any universal icon color rules with higher specificity */
+        .virtual-office-page .mobile-menu-toggle span,
+        .virtual-office-page .mobile-menu-toggle__bar,
+        .mobile-menu-toggle span,
+        .mobile-menu-toggle__bar {
+            color: rgb(0, 31, 63) !important;
+            background: rgb(0, 31, 63) !important;
+        }
+
+        /* Hamburger to X Animation */
+        .mobile-menu-toggle.active .mobile-menu-toggle__bar:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .mobile-menu-toggle.active .mobile-menu-toggle__bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .mobile-menu-toggle__bar:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
         }
 
         @media (max-width: 768px) {
@@ -105,6 +137,8 @@
                 padding: 1rem;
                 flex-direction: column;
                 gap: 1rem;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid var(--border-color);
             }
 
             .nav-links.active {
@@ -115,6 +149,8 @@
                 position: static;
                 box-shadow: none;
                 padding-left: 1rem;
+                border-left: 2px solid var(--accent-color);
+                margin-top: 0.5rem;
             }
 
             .dropdown:hover .dropdown-menu {
@@ -216,7 +252,7 @@
 
         /* Image Gallery Styles */
         .office-gallery {
-            margin: 40px 0;
+            margin: 10px 0; 
         }
 
         .gallery-grid {
@@ -249,7 +285,7 @@
             background: var(--surface);
             padding: 40px;
             border-radius: 8px;
-            margin: 40px 0;
+            margin: 10px 0;
         }
 
         .booking-form {
@@ -321,7 +357,7 @@
 
         /* Pricing Section Styles */
         .pricing-section {
-            padding: 80px 0;
+            padding: 10px 0;
             background: var(--background);
         }
 
@@ -485,7 +521,7 @@
         }
 
         .contact-toggle-btn {
-            background: rgb(0, 31, 63) !important;
+            background: rgb(51, 51, 51);
             color: var(--white);
             border: none;
             padding: 15px 25px;
@@ -509,10 +545,12 @@
 
         .contact-popup {
             display: none;
-            position: absolute;
-            bottom: calc(100% + 15px);
-            right: 0;
-            width: 400px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
             background: transparent;
             z-index: 1001;
         }
@@ -527,18 +565,12 @@
             border-radius: 12px;
             position: relative;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         .contact-popup-content::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 20px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 10px solid var(--surface);
+            display: none;
         }
 
         .close-popup {
@@ -675,9 +707,20 @@
         .submit-btn:hover {
             background: var(--primary-color);
         }
+
+        @media (max-width: 768px) {
+            .contact-popup {
+                width: 95%;
+                max-width: none;
+            }
+
+            .contact-popup-content {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
-<body>
+<body class="virtual-office-page">
     <header>
         <nav class="navbar">
             <div class="container">
@@ -685,6 +728,11 @@
                     <img src="images/rrb-logo.png" alt="RRB Group Logo">
                     <span>RRB Group</span>
                 </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <span class="mobile-menu-toggle__bar"></span>
+                    <span class="mobile-menu-toggle__bar"></span>
+                    <span class="mobile-menu-toggle__bar"></span>
+                </button>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <div class="dropdown">
@@ -704,11 +752,6 @@
                     <a href="careers.html">Careers</a>
                     <a href="contact.html">Contact Us</a>
                 </div>
-                <button class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </nav>
 
@@ -753,18 +796,25 @@
             <div class="container">
                 <section class="office-gallery">
                 <h2>Our Virtual Office Spaces</h2>
+                <div class="pricing-toggle" style="display: flex; gap: 12px; margin-bottom: 24px; justify-content: center;">
+                    <button type="button" class="toggle-btn active" onclick="switchLocation('Sydney')">Sydney</button>
+                    <button type="button" class="toggle-btn" onclick="switchLocation('Perth')">Perth</button>
+                    <button type="button" class="toggle-btn" onclick="switchLocation('Melbourne')">Melbourne</button>
+                    <button type="button" class="toggle-btn" onclick="switchLocation('Adelaide')">Adelaide</button>
+                </div>
+                <p id="office-address" style="text-align: center; margin-bottom: 24px;">St James Trust Building - 185 Elizabeth St, Sydney, NSW 2000</p>
                 <div class="gallery-grid">
                     <img src="images/Entry.jpg" alt="Entry" style="max-width:100%;border-radius:8px;">
                     <img src="images/Conf Room.jpg" alt="Conference Room" style="max-width:100%;border-radius:8px;">
                     <img src="images/Private Office.jpg" alt="Private Office" style="max-width:100%;border-radius:8px;">
                     <img src="images/Conf Room 2.jpg" alt="Conference Room 2" style="max-width:100%;border-radius:8px;">
-            </div>
-        </section>
+                </div>
+            </section>
 
                 <h2>Pricing Plans</h2>
                 <div class="pricing-section" id="pricing-section">
                     <div class="container">
-                        <h2>Choose Your Plan</h2>
+                        <h2 style="text-align: center;">Choose Your Plan</h2>
                         <div class="pricing-toggle">
                             <button type="button" class="toggle-btn" onclick="switchPricing('monthly')">1 Month</button>
                             <button type="button" class="toggle-btn" onclick="switchPricing('semester')">6 Months (20% off)</button>
@@ -857,7 +907,7 @@
                         <p>Dedicated phone number with professional call answering and message forwarding.</p>
                     </div>
                     <div class="feature-item">
-                        <i class="fas fa-meeting-room"></i>
+                        <i class="fas fa-door-open"></i>
                         <h3>Meeting Rooms</h3>
                         <p>Access to fully equipped meeting rooms when you need them.</p>
                     </div>
@@ -949,98 +999,6 @@
             </div>
         </div>
     </footer>
-    <script src="js/script.js"></script>
-    <script>
-        // Contact Popup Functionality
-        const contactToggle = document.querySelector('.contact-toggle-btn');
-        const contactPopup = document.querySelector('.contact-popup');
-        const closePopup = document.querySelector('.close-popup');
-        const contactForm = document.getElementById('contactForm');
-        const messageInput = document.getElementById('message');
-
-        contactToggle.addEventListener('click', () => {
-            contactPopup.classList.add('active');
-        });
-
-        closePopup.addEventListener('click', () => {
-            contactPopup.classList.remove('active');
-        });
-
-        contactPopup.addEventListener('click', (e) => {
-            if (e.target === contactPopup) {
-                contactPopup.classList.remove('active');
-            }
-        });
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            console.log('Form submitted:', Object.fromEntries(formData));
-            contactPopup.classList.remove('active');
-            contactForm.reset();
-            alert('Thank you for your message. We will get back to you soon!');
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const dropdowns = document.querySelectorAll('.dropdown');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
-
-        dropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('.dropdown-toggle');
-            toggle.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    dropdown.classList.toggle('active');
-                }
-            });
-        });
-
-        // Pricing Toggle Functionality
-        function switchPricing(period) {
-            // Update button states
-            document.querySelectorAll('.toggle-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.textContent.includes(period === 'monthly' ? '1 Month' : 
-                                           period === 'semester' ? '6 Months' : '12 Months')) {
-                    btn.classList.add('active');
-                }
-            });
-
-            // Update price displays
-            const elements = {
-                monthly: ['basic-monthly', 'pro-monthly'],
-                semester: ['basic-semester', 'pro-semester'],
-                annual: ['basic-annual', 'pro-annual']
-            };
-
-            // Hide all prices first
-            Object.values(elements).flat().forEach(id => {
-                document.getElementById(id).style.display = 'none';
-            });
-
-            // Show selected prices
-            elements[period].forEach(id => {
-                document.getElementById(id).style.display = 'block';
-            });
-        }
-
-        function getCurrentPeriod() {
-            const activeBtn = document.querySelector('.toggle-btn.active');
-            if (activeBtn.textContent.includes('1 Month')) return 'monthly';
-            if (activeBtn.textContent.includes('6 Months')) return 'semester';
-            return 'annual';
-        }
-
-        // Set initial state
-        document.addEventListener('DOMContentLoaded', function() {
-            switchPricing('annual');
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html> 

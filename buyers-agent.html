@@ -207,7 +207,7 @@
         }
 
         .contact-toggle-btn {
-            background: rgb(0, 31, 63) !important;
+            background: rgb(51, 51, 51);
             color: var(--white);
             border: none;
             padding: 15px 25px;
@@ -231,10 +231,12 @@
 
         .contact-popup {
             display: none;
-            position: absolute;
-            bottom: calc(100% + 15px);
-            right: 0;
-            width: 400px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
             background: transparent;
             z-index: 1001;
         }
@@ -249,25 +251,33 @@
             border-radius: 12px;
             position: relative;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        .contact-popup-content::after {
-            content: '';
+        .close-popup {
             position: absolute;
-            bottom: -10px;
-            right: 20px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 10px solid var(--surface);
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 5px;
+            line-height: 1;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
         }
 
-        .contact-popup-content h2 {
-            margin: 0 0 15px 0;
-            font-size: 1.4rem;
+        .close-popup:hover {
             color: var(--primary-color);
-            text-align: center;
         }
 
         .contact-info-popup {
@@ -343,13 +353,6 @@
             transition: all 0.3s ease;
         }
 
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            display: block;
-        }
-
         @media (max-width: 768px) {
             .mobile-menu-toggle {
                 display: flex;
@@ -385,8 +388,17 @@
                 display: block;
             }
 
-            .dropdown:hover .dropdown-menu {
-                display: none;
+            .dropdown-toggle {
+                justify-content: space-between;
+            }
+
+            .contact-popup {
+                width: 95%;
+                max-width: none;
+            }
+
+            .contact-popup-content {
+                padding: 20px;
             }
         }
 
@@ -430,57 +442,76 @@
         }
 
         .dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 0;
-        }
-
-        .dropdown-toggle i {
-            font-size: 0.8rem;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-toggle i {
-            transform: rotate(180deg);
+            cursor: pointer;
         }
 
         .dropdown-menu {
+            display: none;
             position: absolute;
             top: 100%;
             left: 0;
             background: var(--surface);
-            min-width: 220px;
+            min-width: 200px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             border-radius: 4px;
-            padding: 8px 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
+            padding: 0.5rem 0;
         }
 
         .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            display: block;
         }
 
         .dropdown-menu a {
             display: block;
-            padding: 8px 16px;
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 400;
-            transition: background-color 0.3s ease;
+            padding: 0.5rem 1rem;
         }
 
-        .dropdown-menu a:hover {
-            background-color: var(--surface-variant);
-            color: var(--accent-color);
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: var(--surface);
+            border: 1px solid rgb(0, 31, 63);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle__bar {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: rgb(0, 31, 63) !important;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+            box-shadow: 0 0 0 1px rgb(0, 31, 63);
+        }
+
+        /* Override any universal icon color rules with higher specificity */
+        .mobile-menu-toggle span,
+        .mobile-menu-toggle__bar {
+            color: rgb(0, 31, 63) !important;
+            background: rgb(0, 31, 63) !important;
+        }
+
+        /* Hamburger to X Animation */
+        .mobile-menu-toggle.active .mobile-menu-toggle__bar:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .mobile-menu-toggle.active .mobile-menu-toggle__bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .mobile-menu-toggle__bar:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
         }
 
         @media (max-width: 768px) {
@@ -498,6 +529,8 @@
                 padding: 1rem;
                 flex-direction: column;
                 gap: 1rem;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid var(--border-color);
             }
 
             .nav-links.active {
@@ -507,55 +540,18 @@
             .dropdown-menu {
                 position: static;
                 box-shadow: none;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                display: none;
                 padding-left: 1rem;
-            }
-
-            .dropdown.active .dropdown-menu {
-                display: block;
+                border-left: 2px solid var(--accent-color);
+                margin-top: 0.5rem;
             }
 
             .dropdown:hover .dropdown-menu {
                 display: none;
             }
 
-            .dropdown-toggle {
-                justify-content: space-between;
+            .dropdown.active .dropdown-menu {
+                display: block;
             }
-        }
-
-        .contact-item i {
-            color: var(--accent-color);
-            background: none;
-            border-radius: 0;
-            padding: 0;
-            font-size: 1.1em;
-        }
-
-        .contact-info-popup {
-            margin: 15px 0;
-            padding: 10px;
-            background: var(--surface-variant);
-            border-radius: 4px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 10px 0;
-        }
-
-        .contact-item a {
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        .contact-item a:hover {
-            color: var(--accent-color);
         }
     </style>
 </head>
@@ -567,6 +563,11 @@
                     <img src="images/rrb-logo.png" alt="RRB Group Logo">
                     <span>RRB Group</span>
                 </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <span class="mobile-menu-toggle__bar"></span>
+                    <span class="mobile-menu-toggle__bar"></span>
+                    <span class="mobile-menu-toggle__bar"></span>
+                </button>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <div class="dropdown">
@@ -586,11 +587,6 @@
                     <a href="careers.html">Careers</a>
                     <a href="contact.html">Contact Us</a>
                 </div>
-                <button class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </nav>
 
@@ -835,80 +831,6 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Functionality
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const dropdowns = document.querySelectorAll('.dropdown');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            // Close all dropdowns when toggling mobile menu
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        });
-
-        // Updated dropdown functionality
-        dropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('.dropdown-toggle');
-            toggle.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    // Close other dropdowns
-                    dropdowns.forEach(d => {
-                        if (d !== dropdown) {
-                            d.classList.remove('active');
-                        }
-                    });
-                    dropdown.classList.toggle('active');
-                }
-            });
-        });
-
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.dropdown')) {
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
-        });
-
-        // Close dropdowns when clicking a dropdown link
-        document.querySelectorAll('.dropdown-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-                // Also close mobile menu if open
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Reset dropdown states when page loads
-        window.addEventListener('load', () => {
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-            navLinks.classList.remove('active');
-        });
-
-        // Contact Toggle Functionality (from home page)
-        const contactToggle = document.querySelector('.contact-toggle-btn');
-        const contactPopup = document.querySelector('.contact-popup');
-        const closePopup = document.querySelector('.close-popup');
-        contactToggle.addEventListener('click', () => {
-            contactPopup.classList.add('active');
-        });
-        closePopup.addEventListener('click', () => {
-            contactPopup.classList.remove('active');
-        });
-        contactPopup.addEventListener('click', (e) => {
-            if (e.target === contactPopup) {
-                contactPopup.classList.remove('active');
-            }
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html> 

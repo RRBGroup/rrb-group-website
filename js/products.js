@@ -55,11 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const dropdowns = document.querySelectorAll('.dropdown');
 
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-        });
-    }
+    // Only one event listener for mobileMenuToggle below
 
     // Handle dropdowns on mobile
     dropdowns.forEach(dropdown => {
@@ -68,17 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
             toggle.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
+                    // Close all other dropdowns first
+                    dropdowns.forEach(d => {
+                        if (d !== dropdown) {
+                            d.classList.remove('active');
+                        }
+                    });
                     dropdown.classList.toggle('active');
                 }
             });
-        }
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.navbar')) {
-            navLinks.classList.remove('active');
-            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
         }
     });
 
@@ -100,4 +94,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Ensure nav menu and dropdowns are closed after DOM is fully rendered
+    setTimeout(function() {
+        if (navLinks) navLinks.classList.remove('active');
+        if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
+        dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+    }, 0);
+
+    // Hamburger menu toggle (open/close menu and toggle icon)
+    if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            const isOpening = !navLinks.classList.contains('active');
+            // Always close all dropdowns before opening menu
+            if (isOpening) {
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+            navLinks.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active'); // for X/close icon
+            // Always close all dropdowns when closing menu
+            if (!isOpening) {
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            }
+        });
+    }
 }); 

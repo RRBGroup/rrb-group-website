@@ -207,12 +207,25 @@
         .success-message {
             text-align: center;
             padding: 40px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin: 20px 0;
         }
 
         .success-message i {
             font-size: 64px;
-            color: var(--accent-color);
+            color: #4CAF50;
             margin-bottom: 24px;
+        }
+
+        .success-message h3 {
+            color: #2E7D32;
+            margin-bottom: 16px;
+        }
+
+        .success-message p {
+            color: #666;
+            margin-bottom: 8px;
         }
 
         .form-group input.error,
@@ -355,83 +368,36 @@
                 font-size: 48px;
             }
 
-            /* Mobile Navigation Styles */
-            .mobile-menu-toggle {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                width: 30px;
-                height: 21px;
-                background: none;
-                border: none;
-                cursor: pointer;
-                padding: 0;
-                z-index: 1000;
-            }
-
-            .mobile-menu-toggle span {
-                display: block;
-                width: 100%;
-                height: 3px;
-                background-color: var(--text-color);
-                transition: all 0.3s ease;
-            }
-
-            .mobile-menu-toggle.active span:nth-child(1) {
-                transform: translateY(9px) rotate(45deg);
-            }
-
-            .mobile-menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .mobile-menu-toggle.active span:nth-child(3) {
-                transform: translateY(-9px) rotate(-45deg);
-            }
-
             .nav-links {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: var(--surface);
-                padding: 80px 20px 20px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-                z-index: 999;
-            }
-
-            .nav-links.active {
                 display: flex;
+                gap: 1rem;
+                align-items: center;
             }
 
             .nav-links a {
-                font-size: 1.2rem;
-                padding: 10px 0;
-                width: 100%;
+                font-size: 0.9rem;
+                padding: 5px 0;
             }
 
             .dropdown-menu {
-                position: static;
-                box-shadow: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--surface);
+                min-width: 200px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                padding: 8px 0;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+
+            .dropdown:hover .dropdown-menu {
                 opacity: 1;
                 visibility: visible;
-                transform: none;
-                display: none;
-                padding-left: 20px;
-                width: 100%;
-            }
-
-            .dropdown.active .dropdown-menu {
-                display: block;
-            }
-
-            .dropdown-toggle {
-                justify-content: space-between;
-                width: 100%;
+                transform: translateY(0);
             }
         }
 
@@ -518,36 +484,209 @@
             padding-top: 15px;
             border-top: 1px solid var(--surface-variant);
         }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface);
+            min-width: 220px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--surface-variant);
+            color: var(--accent-color);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: var(--surface);
+            border: 1px solid rgb(0, 31, 63);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle__bar {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: rgb(0, 31, 63) !important;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+            box-shadow: 0 0 0 1px rgb(0, 31, 63);
+        }
+
+        /* Override any universal icon color rules with higher specificity */
+        .virtual-office-page .mobile-menu-toggle span,
+        .virtual-office-page .mobile-menu-toggle__bar,
+        .mobile-menu-toggle span,
+        .mobile-menu-toggle__bar {
+            color: rgb(0, 31, 63) !important;
+            background: rgb(0, 31, 63) !important;
+        }
+
+        /* Hamburger to X Animation */
+        .mobile-menu-toggle.active .mobile-menu-toggle__bar:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .mobile-menu-toggle.active .mobile-menu-toggle__bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .mobile-menu-toggle__bar:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--surface);
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                padding-left: 1rem;
+                border-left: 2px solid var(--accent-color);
+                margin-top: 0.5rem;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: none;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+        }
     </style>
 </head>
-<body>
+<body class="virtual-office-page">
+    <header>
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">
                 <img src="images/rrb-logo.png" alt="RRB Group Logo">
                 <span>RRB Group</span>
             </a>
-            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                <span class="mobile-menu-toggle__bar"></span>
+                <span class="mobile-menu-toggle__bar"></span>
+                <span class="mobile-menu-toggle__bar"></span>
             </button>
             <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="about.html">About</a>
                 <div class="dropdown">
-                    <a href="#" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                    <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
                         <a href="virtual-office.html">Virtual Office</a>
-                        <a href="business-services.html">Business Services</a>
-                        <a href="migration.html">Migration Services</a>
+                        <a href="buyers-agent.html">Buyer's Agent</a>
+                        <a href="import-export.html">Import/Export</a>
+                        <a href="migration.html">Migration & Education</a>
+                        <a href="lab-equipment.html">Lab Equipment</a>
+                        <a href="buying-in-bali.html">Buying in Bali</a>
                     </div>
                 </div>
+                <a href="about.html">About Us</a>
                 <a href="blog.html">Blog</a>
-                <a href="contact.html">Contact</a>
+                <a href="recommendations.html">Recommendations</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact Us</a>
             </div>
         </div>
     </nav>
+    </header>
 
     <div class="signup-container">
         <div class="progress-bar">
@@ -575,18 +714,27 @@
             <div class="plan-summary">
                 <h3>Select Your Plan</h3>
                 <div class="form-group">
-                    <label for="plan-select">Plan Type</label>
+                    <label for="plan-select">Plan Type *</label>
                     <select id="plan-select" name="plan-select" required>
                         <option value="Professional">Professional</option>
                         <option value="Basic">Basic</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="period-select">Billing Period</label>
+                    <label for="period-select">Billing Period *</label>
                     <select id="period-select" name="period-select" required>
                         <option value="12 Months">12 Months (35% off)</option>
                         <option value="6 Months">6 Months (20% off)</option>
                         <option value="1 Month">1 Month</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="location-select">Virtual Office Location *</label>
+                    <select id="location-select" name="location-select" required>
+                        <option value="">Select Location</option>
+                        <option value="Sydney">Sydney</option>
+                        <option value="Melbourne">Melbourne</option>
+                        <option value="Perth">Perth</option>
                     </select>
                 </div>
                 <div class="summary-item total">
@@ -604,7 +752,7 @@
                 <small class="form-text text-muted">Don't have an ABN? Contact us and we'll help you get one.</small>
             </div>
             <div class="form-group">
-                <label for="business-type">Business Type</label>
+                <label for="business-type">Business Type *</label>
                 <select id="business-type" name="business-type" required>
                     <option value="">Select Business Type</option>
                     <option value="sole-trader">Sole Trader</option>
@@ -614,7 +762,7 @@
                 </select>
             </div>
             <div class="button-group">
-                <button type="button" class="btn btn-primary next-step">Continue</button>
+                <button type="button" class="btn btn-primary next-step" onclick="validateAndProceed(1)">Continue</button>
             </div>
         </div>
 
@@ -672,8 +820,8 @@
                 </div>
             </div>
             <div class="button-group">
-                <button type="button" class="btn btn-secondary prev-step">Back</button>
-                <button type="button" class="btn btn-primary next-step">Continue</button>
+                <button type="button" class="btn btn-secondary prev-step" onclick="goToStep(1)">Back</button>
+                <button type="button" class="btn btn-primary next-step" onclick="validateAndProceed(2)">Continue</button>
             </div>
         </div>
 
@@ -685,6 +833,7 @@
                 <div class="summary-details">
                     <p><strong>Plan:</strong> <span id="summary-plan"></span></p>
                     <p><strong>Period:</strong> <span id="summary-period"></span></p>
+                    <p><strong>Location:</strong> <span id="summary-location"></span></p>
                     <p><strong>Base Amount:</strong> <span id="base-amount"></span> AUD</p>
                     <p class="surcharge-note"><i class="fas fa-info-circle"></i> A 2.5% surcharge will be applied to credit card payments</p>
                     <p class="total-amount"><strong>Total Amount:</strong> <span id="total-amount"></span> AUD</p>
@@ -699,9 +848,6 @@
                     <i class="fas fa-university"></i>
                     <div>Bank Transfer</div>
                 </div>
-            </div>
-            <div class="alert alert-info" style="background:#eaf6ff;padding:12px 18px;border-radius:6px;margin-bottom:18px;font-size:1rem;">
-                <strong>Note:</strong> To complete your payment, please fill your credit card details, and then click the <b>"Save With Link"</b> box below and follow the instructions.
             </div>
             <!-- Credit Card Form -->
             <form id="card-payment-form" class="payment-form active">
@@ -718,9 +864,11 @@
             <form id="bank-payment-form" class="payment-form">
                 <div class="bank-details">
                     <h4>Bank Account Details for Payment</h4>
-                    <p><strong>Account Name:</strong> RRB Group Pty Ltd</p>
-                    <p><strong>BSB:</strong> <span id="bank-bsb"></span></p>
-                    <p><strong>Account Number:</strong> <span id="bank-account"></span></p>
+                    <p><strong>Bank Name:</strong> Commonwealth Bank of Australia</p>
+                    <p><strong>BIC/SWIFT Code:</strong> CTBAAU2S</p>
+                    <p><strong>Account Name:</strong> Brayan Rodriguez</p>
+                    <p><strong>BSB:</strong> 067-873</p>
+                    <p><strong>Account Number:</strong> 17623670</p>
                     <p><strong>Reference:</strong> Please use your company name as reference</p>
                     <p><strong>Amount:</strong> <span id="bank-transfer-amount" name="bank-transfer-amount"></span> AUD</p>
                     <div class="bank-note">
@@ -747,484 +895,82 @@
         </div>
     </div>
 
+    <script src="js/main.js"></script>
+    <script src="js/signup.js"></script>
     <script>
-        console.log('Script loaded');
-        // Initialize Stripe
-        let stripe;
-        // Get Stripe public key from server
-        fetch('/api/get-stripe-key')
-            .then(response => response.json())
-            .then(data => {
-                stripe = Stripe(data.publicKey);
-                const elements = stripe.elements();
-                // Create card Element
-                const card = elements.create('card', {
-                    style: {
-                        base: {
-                            fontSize: '16px',
-                            color: '#32325d',
-                            fontFamily: '"Poppins", sans-serif',
-                            '::placeholder': {
-                                color: '#aab7c4'
-                            }
-                        },
-                        invalid: {
-                            color: '#dc3545',
-                            iconColor: '#dc3545'
-                        }
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            mobileMenuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Handle dropdowns in mobile view
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
                     }
                 });
-                // Mount the card Element
-                card.mount('#card-element');
-            })
-            .catch(error => {
-                console.error('Error initializing Stripe:', error);
-                document.getElementById('card-errors').textContent = 'Error initializing payment system. Please try again later.';
-                document.getElementById('card-errors').classList.add('show');
             });
 
-        // Get URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const initialPlan = urlParams.get('plan') || 'Professional';
-        const initialPeriod = urlParams.get('period') || '12 Months';
+            // Form step progression functionality
+            const steps = document.querySelectorAll('.step');
+            const formSteps = document.querySelectorAll('.form-step');
+            let currentStep = 1;
 
-        // Set initial plan and period
-        document.getElementById('plan-select').value = initialPlan;
-        document.getElementById('period-select').value = initialPeriod;
-        updatePlanSummary(); // Ensure correct total on load
-
-        // Always update summary when plan or period changes
-        document.getElementById('plan-select').addEventListener('change', updatePlanSummary);
-        document.getElementById('period-select').addEventListener('change', updatePlanSummary);
-
-        // Update plan summary
-        function updatePlanSummary() {
-            const plan = document.getElementById('plan-select').value;
-            const period = document.getElementById('period-select').value;
-            
-            let baseAmount = 0;
-            if (plan === 'Test') {
-                baseAmount = 1; // Test plan is always $1 AUD
-            } else if (plan === 'Basic') {
-                baseAmount = period === '12 Months' ? 546 : period === '6 Months' ? 336 : 70;
-            } else {
-                baseAmount = period === '12 Months' ? 780 : period === '6 Months' ? 480 : 100;
-            }
-
-            // Calculate total with surcharge for credit card (without rounding)
-            const surchargeRate = 0.025;
-            const totalWithSurcharge = baseAmount * (1 + surchargeRate);
-
-            // Format numbers with two decimal points
-            const formatAmount = (amount) => amount.toFixed(2);
-
-            // Update summary display in step 1 (without surcharge)
-            const step1TotalElement = document.querySelector('.plan-summary .summary-item.total #total-amount');
-            if (step1TotalElement) {
-                step1TotalElement.textContent = formatAmount(baseAmount) + ' AUD';
-            }
-
-            // Update summary display in step 3
-            document.getElementById('summary-plan').textContent = plan;
-            document.getElementById('summary-period').textContent = period;
-            document.getElementById('base-amount').textContent = formatAmount(baseAmount);
-            
-            // Update total amount based on selected payment method
-            const selectedPaymentMethod = document.querySelector('.payment-method.selected');
-            const step3TotalElement = document.querySelector('.payment-summary .total-amount #total-amount');
-            if (step3TotalElement) {
-                if (selectedPaymentMethod && selectedPaymentMethod.dataset.method === 'card') {
-                    step3TotalElement.textContent = formatAmount(totalWithSurcharge);
-                } else {
-                    step3TotalElement.textContent = formatAmount(baseAmount);
-                }
-            }
-            
-            document.getElementById('bank-transfer-amount').textContent = formatAmount(baseAmount);
-
-            // Store amounts globally for payment handler
-            window.currentBaseAmount = baseAmount;
-            window.currentTotalWithSurcharge = totalWithSurcharge;
-        }
-
-        // Form navigation
-        const formSteps = document.querySelectorAll('.form-step');
-        const progressSteps = document.querySelectorAll('.step');
-        const nextButtons = document.querySelectorAll('.next-step');
-        const prevButtons = document.querySelectorAll('.prev-step');
-
-        let currentStep = 1;
-
-        function showStep(step) {
-            console.log('Switching to step', step); // Debug log
-            formSteps.forEach(formStep => {
-                formStep.classList.remove('active');
-                if (parseInt(formStep.dataset.step) === step) {
-                    formStep.classList.add('active');
-                }
-            });
-
-            progressSteps.forEach(progressStep => {
-                progressStep.classList.remove('active', 'completed');
-                const stepNum = parseInt(progressStep.dataset.step);
-                if (stepNum === step) {
-                    progressStep.classList.add('active');
-                } else if (stepNum < step) {
-                    progressStep.classList.add('completed');
-                }
-            });
-        }
-
-        nextButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                if (validateStep(currentStep)) {
-                    currentStep++;
-                    showStep(currentStep);
-                }
-            });
-        });
-
-        prevButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                currentStep--;
-                showStep(currentStep);
-            });
-        });
-
-        function validateStep(step) {
-            const currentFormStep = document.querySelector(`.form-step[data-step="${step}"]`);
-            const inputs = currentFormStep.querySelectorAll('input[required], select[required]');
-            let isValid = true;
-            let errorMessages = [];
-
-            // Remove any existing validation summary
-            const existingSummary = currentFormStep.querySelector('.validation-summary');
-            if (existingSummary) {
-                existingSummary.remove();
-            }
-
-            // Remove error states from all inputs
-            inputs.forEach(input => {
-                input.classList.remove('error');
-                const errorMessage = input.parentElement.querySelector('.error-message');
-                if (errorMessage) {
-                    errorMessage.classList.remove('show');
-                }
-            });
-
-            // Validate each input
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.classList.add('error');
-                    
-                    // Create or show error message
-                    let errorMessage = input.parentElement.querySelector('.error-message');
-                    if (!errorMessage) {
-                        errorMessage = document.createElement('div');
-                        errorMessage.className = 'error-message';
-                        input.parentElement.appendChild(errorMessage);
-                    }
-                    errorMessage.textContent = `${input.previousElementSibling.textContent.replace(' *', '')} is required`;
-                    errorMessage.classList.add('show');
-                    
-                    errorMessages.push(input.previousElementSibling.textContent.replace(' *', ''));
-                }
-            });
-
-            // If there are errors, show validation summary
-            if (!isValid) {
-                const validationSummary = document.createElement('div');
-                validationSummary.className = 'validation-summary';
-                validationSummary.innerHTML = `
-                    <h4>Please complete all required fields:</h4>
-                    <ul>
-                        ${errorMessages.map(field => `<li>${field}</li>`).join('')}
-                    </ul>
-                `;
-                currentFormStep.insertBefore(validationSummary, currentFormStep.firstChild);
-                validationSummary.classList.add('show');
-            }
-
-            return isValid;
-        }
-
-        // Add input event listeners to remove error state when user starts typing
-        document.querySelectorAll('input[required], select[required]').forEach(input => {
-            input.addEventListener('input', function() {
-                if (this.value.trim()) {
-                    this.classList.remove('error');
-                    const errorMessage = this.parentElement.querySelector('.error-message');
-                    if (errorMessage) {
-                        errorMessage.classList.remove('show');
-                    }
-                }
-            });
-        });
-
-        // Payment method selection
-        const paymentMethods = document.querySelectorAll('.payment-method');
-        const paymentForms = document.querySelectorAll('.payment-form');
-        const submitButton = document.getElementById('submit-payment');
-
-        paymentMethods.forEach(method => {
-            method.addEventListener('click', () => {
-                // Update selected payment method
-                paymentMethods.forEach(m => m.classList.remove('selected'));
-                method.classList.add('selected');
-
-                // Show corresponding form
-                const methodType = method.dataset.method;
-                paymentForms.forEach(form => {
-                    form.classList.remove('active');
-                    if (form.id === `${methodType}-payment-form`) {
-                        form.classList.add('active');
-                    }
-                });
-
-                // Update total amount based on payment method
-                const totalAmountElement = document.querySelector('.payment-summary .total-amount #total-amount');
-                if (totalAmountElement) {
-                    if (methodType === 'card') {
-                        totalAmountElement.textContent = window.currentTotalWithSurcharge.toFixed(2);
+            function updateSteps(stepNumber) {
+                steps.forEach((step, index) => {
+                    if (index + 1 < stepNumber) {
+                        step.classList.add('completed');
+                        step.classList.remove('active');
+                    } else if (index + 1 === stepNumber) {
+                        step.classList.add('active');
+                        step.classList.remove('completed');
                     } else {
-                        totalAmountElement.textContent = window.currentBaseAmount.toFixed(2);
+                        step.classList.remove('active', 'completed');
                     }
-                }
+                });
+            }
 
-                // Update submit button text
-                submitButton.textContent = methodType === 'bank' ? 'Confirm Bank Details' : 'Complete Payment';
+            function showStep(stepNumber) {
+                formSteps.forEach((step, index) => {
+                    if (index + 1 === stepNumber) {
+                        step.classList.add('active');
+                    } else {
+                        step.classList.remove('active');
+                    }
+                });
+                updateSteps(stepNumber);
+                currentStep = stepNumber;
+            }
+
+            // Handle next step buttons
+            document.querySelectorAll('.next-step').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (currentStep < formSteps.length) {
+                        showStep(currentStep + 1);
+                    }
+                });
             });
-        });
 
-        // Handle form submission
-        const cardPaymentForm = document.getElementById('card-payment-form');
-        cardPaymentForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const submitButton = document.getElementById('submit-payment');
-            submitButton.disabled = true;
-            submitButton.textContent = 'Processing...';
-
-            try {
-                const { paymentMethod, error } = await stripe.createPaymentMethod({
-                    type: 'card',
-                    card: card,
+            // Handle previous step buttons
+            document.querySelectorAll('.prev-step').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (currentStep > 1) {
+                        showStep(currentStep - 1);
+                    }
                 });
-
-                if (error) {
-                    throw error;
-                }
-
-                // Get customer info
-                const customerInfo = {
-                    name: `${document.getElementById('first-name').value} ${document.getElementById('last-name').value}`,
-                    email: document.getElementById('email').value,
-                    company: document.getElementById('company-name').value,
-                    abn: document.getElementById('abn').value
-                };
-
-                // Get the current total amount from the display
-                const selectedPaymentMethod = document.querySelector('.payment-method.selected');
-                const amount = selectedPaymentMethod && selectedPaymentMethod.dataset.method === 'card' 
-                    ? window.currentTotalWithSurcharge 
-                    : window.currentBaseAmount;
-
-                // Process payment
-                const response = await fetch('http://localhost:3000/api/process-payment', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    credentials: 'include',
-                    body: JSON.stringify({
-                        paymentMethodId: paymentMethod.id,
-                        amount: amount,
-                        customerInfo: customerInfo,
-                        plan: document.getElementById('plan-select').value,
-                        period: document.getElementById('period-select').value
-                    })
-                });
-
-                // Check if response is ok and has content
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error('Server response:', errorText);
-                    throw new Error(`Server responded with status: ${response.status}. ${errorText}`);
-                }
-
-                const contentType = response.headers.get('content-type');
-                if (!contentType || !contentType.includes('application/json')) {
-                    throw new Error('Server response was not JSON');
-                }
-
-                const result = await response.json();
-
-                if (result.success) {
-                    // Show success message
-                    document.getElementById('order-reference').textContent = result.orderRef;
-                    currentStep = 4;
-                    showStep(currentStep);
-                } else {
-                    throw new Error(result.error || 'Payment failed');
-                }
-            } catch (error) {
-                console.error('Payment Error:', error);
-                const errorElement = document.getElementById('card-errors');
-                errorElement.textContent = error.message || 'An error occurred while processing your payment. Please try again.';
-                errorElement.classList.add('show');
-                submitButton.disabled = false;
-                submitButton.textContent = 'Complete Payment';
-            }
-        });
-
-        // Handle bank transfer form submission
-        document.getElementById('bank-payment-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const submitButton = document.getElementById('submit-bank');
-            submitButton.disabled = true;
-            submitButton.textContent = 'Processing...';
-
-            try {
-                // Get customer info
-                const customerInfo = {
-                    name: `${document.getElementById('first-name').value} ${document.getElementById('last-name').value}`,
-                    email: document.getElementById('email').value,
-                    company: document.getElementById('company-name').value,
-                    abn: document.getElementById('abn').value
-                };
-
-                // Generate order reference
-                const orderRef = 'VO-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-
-                // Process bank transfer
-                const response = await fetch('http://localhost:3000/api/process-bank-transfer', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    credentials: 'include',
-                    body: JSON.stringify({
-                        orderRef: orderRef,
-                        amount: window.currentBaseAmount,
-                        customerInfo: customerInfo,
-                        plan: document.getElementById('plan-select').value,
-                        period: document.getElementById('period-select').value
-                    })
-                });
-
-                // Check if response is ok and has content
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error('Server response:', errorText);
-                    throw new Error(`Server responded with status: ${response.status}. ${errorText}`);
-                }
-
-                const contentType = response.headers.get('content-type');
-                if (!contentType || !contentType.includes('application/json')) {
-                    throw new Error('Server response was not JSON');
-                }
-
-                const result = await response.json();
-
-                if (result.success) {
-                    // Show success message
-                    document.getElementById('order-reference').textContent = result.orderRef;
-                    currentStep = 4;
-                    showStep(currentStep);
-                } else {
-                    throw new Error(result.error || 'Bank transfer processing failed');
-                }
-            } catch (error) {
-                console.error('Bank Transfer Error:', error);
-                const errorElement = document.createElement('div');
-                errorElement.className = 'error-message show';
-                errorElement.textContent = error.message || 'An error occurred while processing your bank transfer. Please try again.';
-                
-                const bankForm = document.getElementById('bank-payment-form');
-                const existingError = bankForm.querySelector('.error-message');
-                if (existingError) {
-                    existingError.remove();
-                }
-                bankForm.insertBefore(errorElement, bankForm.firstChild);
-                
-                submitButton.disabled = false;
-                submitButton.textContent = 'Confirm Bank Details';
-            }
-        });
-
-        // Fetch bank details when bank transfer form is shown
-        document.querySelector('.payment-method[data-method="bank"]').addEventListener('click', async function() {
-            try {
-                const response = await fetch('/api/get-bank-details');
-                if (!response.ok) throw new Error('Failed to fetch bank details');
-                const data = await response.json();
-                document.getElementById('bank-bsb').textContent = data.bsb;
-                document.getElementById('bank-account').textContent = data.accountNumber;
-            } catch (error) {
-                console.error('Error fetching bank details:', error);
-                document.getElementById('bank-bsb').textContent = 'Error loading BSB';
-                document.getElementById('bank-account').textContent = 'Error loading account number';
-            }
-        });
-
-        // Add global error handler
-        window.onerror = function(message, source, lineno, colno, error) {
-            console.error('Global error:', message, source, lineno, colno, error);
-            alert('A script error occurred: ' + message);
-        };
-
-        // Enhanced Mobile Menu Functionality
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const dropdowns = document.querySelectorAll('.dropdown');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-toggle')) {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Handle dropdowns in mobile view
-        dropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('.dropdown-toggle');
-            toggle.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    dropdown.classList.toggle('active');
-                }
             });
-        });
 
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.dropdown')) {
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                document.body.style.overflow = '';
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
+            // Initialize first step
+            showStep(1);
         });
     </script>
 </body>
