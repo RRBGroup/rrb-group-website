@@ -502,132 +502,66 @@
         /* Trading Widgets */
         .trading-widgets {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 30px;
-            width: 100%;
-            box-sizing: border-box;
-            padding: 0 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
         }
 
         .trading-widget {
-            background: var(--surface);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            width: 100%;
-            height: 400px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             overflow: hidden;
-            box-sizing: border-box;
+            height: 400px;
         }
 
         .trading-widget iframe {
             width: 100%;
             height: 100%;
             border: none;
-            box-sizing: border-box;
         }
 
-        .trading-widget:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .trading-widget h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 10px;
-        }
-
-        .trading-widget p {
-            color: var(--text);
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .trading-widget .widget-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .trading-widget .date {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .trading-widget .read-more {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .trading-widget .read-more:hover {
-            color: var(--primary-dark);
-        }
-
-        @media (max-width: 768px) {
+        /* Mobile Responsive Styles */
+        @media screen and (max-width: 768px) {
             .trading-widgets {
                 grid-template-columns: 1fr;
-                padding: 0;
-                margin: 20px 0;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            
-            .trading-widget {
-                height: 350px;
-                width: 100%;
-                padding: 15px;
-                box-sizing: border-box;
+                gap: 1rem;
+                padding: 0 1rem;
             }
 
-            .trading-widget iframe {
-                width: 100%;
+            .trading-widget {
+                height: 350px;
+                margin: 0 auto;
                 max-width: 100%;
-                box-sizing: border-box;
             }
         }
 
-        /* iPhone and Small Mobile Devices */
-        @media (max-width: 428px) {
+        @media screen and (max-width: 428px) {
             .trading-widgets {
-                padding: 0;
-                margin: 15px 0;
+                padding: 0 0.5rem;
             }
-            
+
             .trading-widget {
-                height: 300px;
-                padding: 10px;
-                margin: 0;
+                height: 280px;
+                margin: 0 auto;
+                max-width: 95%;
             }
 
             .trading-widget iframe {
-                width: 100%;
-                max-width: 100%;
                 transform: scale(0.95);
                 transform-origin: 0 0;
             }
         }
 
-        /* Extra Small Devices */
-        @media (max-width: 375px) {
+        @media screen and (max-width: 375px) {
             .trading-widget {
-                height: 280px;
-                padding: 8px;
+                height: 250px;
+                max-width: 92%;
             }
 
             .trading-widget iframe {
                 transform: scale(0.9);
+                transform-origin: 0 0;
             }
         }
 
@@ -907,6 +841,8 @@
                     </div>
                 </div>
             </div>
+        </section>
+
         <!-- Latest News Section -->
         <section class="news-section">
             <div class="container">
