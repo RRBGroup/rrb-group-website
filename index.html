@@ -507,6 +507,7 @@
             margin-top: 30px;
             width: 100%;
             box-sizing: border-box;
+            padding: 0 15px;
         }
 
         .trading-widget {
@@ -594,6 +595,39 @@
                 width: 100%;
                 max-width: 100%;
                 box-sizing: border-box;
+            }
+        }
+
+        /* iPhone and Small Mobile Devices */
+        @media (max-width: 428px) {
+            .trading-widgets {
+                padding: 0;
+                margin: 15px 0;
+            }
+            
+            .trading-widget {
+                height: 300px;
+                padding: 10px;
+                margin: 0;
+            }
+
+            .trading-widget iframe {
+                width: 100%;
+                max-width: 100%;
+                transform: scale(0.95);
+                transform-origin: 0 0;
+            }
+        }
+
+        /* Extra Small Devices */
+        @media (max-width: 375px) {
+            .trading-widget {
+                height: 280px;
+                padding: 8px;
+            }
+
+            .trading-widget iframe {
+                transform: scale(0.9);
             }
         }
 
