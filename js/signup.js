@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const amount = parseFloat(document.getElementById('base-amount').textContent.replace('$', ''));
 
                 // Send payment to server
-                const response = await fetch('https://rrbgroup.au/api/process-payment', {
+                const response = await fetch('/api/process-payment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -477,7 +477,7 @@ document.getElementById('bank-payment-form').addEventListener('submit', async fu
         const orderRef = 'VO-' + Math.random().toString(36).substr(2, 9).toUpperCase();
 
         // Process bank transfer
-        const response = await fetch('https://rrbgroup.au/api/process-bank-transfer', {
+        const response = await fetch('/api/process-bank-transfer', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -43,7 +43,10 @@ app.use(bodyParser.json());
 // CORS for production
 if (process.env.NODE_ENV === 'production') {
     app.use(cors({
-        origin: 'https://rrbgroup.au',
+        origin: ['https://rrbgroup.au', 'https://www.rrbgroup.au'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+        credentials: true,
         optionsSuccessStatus: 200
     }));
 } else {
