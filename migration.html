@@ -119,7 +119,7 @@
         }
 
         .contact-toggle-btn {
-            background: rgb(0, 31, 63) !important;
+            background: rgb(51, 51, 51);
             color: var(--white);
             border: none;
             padding: 15px 25px;
@@ -143,10 +143,12 @@
 
         .contact-popup {
             display: none;
-            position: absolute;
-            bottom: calc(100% + 15px);
-            right: 0;
-            width: 400px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
             background: transparent;
             z-index: 1001;
         }
@@ -161,18 +163,37 @@
             border-radius: 12px;
             position: relative;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 5px;
+            line-height: 1;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .close-popup:hover {
+            color: var(--primary-color);
         }
 
         .contact-popup-content::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 20px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 10px solid var(--surface);
+            display: none;
         }
 
         .contact-popup-content h2 {
@@ -339,12 +360,21 @@
             }
 
             .dropdown:hover .dropdown-menu {
-                display: none;
+                display: block !important;
             }
 
             .dropdown-toggle {
                 justify-content: space-between;
                 width: 100%;
+            }
+
+            .contact-popup {
+                width: 95%;
+                max-width: none;
+            }
+
+            .contact-popup-content {
+                padding: 20px;
             }
         }
 
@@ -367,6 +397,11 @@
                     <img src="images/rrb-logo.png" alt="RRB Group Logo">
                     <span>RRB Group</span>
                 </a>
+                <button class="mobile-menu-toggle" aria-label="Open navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <div class="dropdown">
@@ -386,11 +421,6 @@
                     <a href="careers.html">Careers</a>
                     <a href="contact.html">Contact Us</a>
                 </div>
-                <button class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </nav>
 
@@ -511,8 +541,7 @@
             <div class="container">
                 <h2>Start Your Australian Journey Today</h2>
                 <p>Let us guide you through your education and migration pathway with our firsthand experience and extensive network of providers.</p>
-                <button class="cta-button">Schedule a Consultation</button>
-                <p class="form-note" style="margin-top: 10px; font-size: 0.9em; color: var(--accent-color);">* Please type "Migration & Education" in the message section when contacting us</p>
+               
             </div>
         </section>
     </main>
@@ -567,69 +596,6 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Functionality
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const dropdowns = document.querySelectorAll('.dropdown');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            // Close all dropdowns when toggling mobile menu
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        });
-
-        // Updated dropdown functionality
-        dropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('.dropdown-toggle');
-            toggle.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    // Close other dropdowns
-                    dropdowns.forEach(d => {
-                        if (d !== dropdown) {
-                            d.classList.remove('active');
-                        }
-                    });
-                    dropdown.classList.toggle('active');
-                }
-            });
-        });
-
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.dropdown')) {
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
-        });
-
-        // Contact Toggle Functionality (from home page)
-        const contactToggle = document.querySelector('.contact-toggle-btn');
-        const contactPopup = document.querySelector('.contact-popup');
-        const closePopup = document.querySelector('.close-popup');
-        contactToggle.addEventListener('click', () => {
-            contactPopup.classList.add('active');
-        });
-        closePopup.addEventListener('click', () => {
-            contactPopup.classList.remove('active');
-        });
-        contactPopup.addEventListener('click', (e) => {
-            if (e.target === contactPopup) {
-                contactPopup.classList.remove('active');
-            }
-        });
-
-        // Reset dropdown states when page loads
-        window.addEventListener('load', () => {
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-            navLinks.classList.remove('active');
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html> 
