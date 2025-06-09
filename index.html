@@ -89,6 +89,12 @@
             height: auto;
         }
 
+        .about-section p {
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
         /* Testimonials */
         .testimonials {
             padding: 80px 0;
@@ -500,19 +506,25 @@
         }
 
         /* Trading Widgets */
-        .trading-widgets {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
+        .trading-widgets-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+            max-width: 100%;
+            margin: 0 auto;
         }
 
         .trading-widget {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            overflow: hidden;
+            flex: 1 1 300px;
+            min-width: 280px;
+            max-width: 100%;
             height: 400px;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .trading-widget iframe {
@@ -521,47 +533,28 @@
             border: none;
         }
 
-        /* Mobile Responsive Styles */
-        @media screen and (max-width: 768px) {
-            .trading-widgets {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                padding: 0 1rem;
+        @media (max-width: 768px) {
+            .trading-widgets-container {
+                padding: 10px;
+                gap: 15px;
             }
 
             .trading-widget {
+                flex: 1 1 100%;
+                min-width: 100%;
                 height: 350px;
-                margin: 0 auto;
-                max-width: 100%;
+                margin: 0;
             }
         }
 
-        @media screen and (max-width: 428px) {
-            .trading-widgets {
-                padding: 0 0.5rem;
+        @media (max-width: 480px) {
+            .trading-widgets-container {
+                padding: 5px;
+                gap: 10px;
             }
 
             .trading-widget {
-                height: 280px;
-                margin: 0 auto;
-                max-width: 95%;
-            }
-
-            .trading-widget iframe {
-                transform: scale(0.95);
-                transform-origin: 0 0;
-            }
-        }
-
-        @media screen and (max-width: 375px) {
-            .trading-widget {
-                height: 250px;
-                max-width: 92%;
-            }
-
-            .trading-widget iframe {
-                transform: scale(0.9);
-                transform-origin: 0 0;
+                height: 300px;
             }
         }
 
@@ -606,8 +599,7 @@
                 padding-left: 100%;
             }
 
-            .trading-widgets {
-                grid-template-columns: 1fr;
+            .trading-widgets-container {
                 padding: 0 20px;
                 box-sizing: border-box;
             }
