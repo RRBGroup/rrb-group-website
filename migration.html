@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Migration & Education Services - RRB Group</title>
+    <title>Business Services - RRB Group</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -28,18 +28,30 @@
         }
 
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            padding: 40px 0;
+        }
+
+        .services-grid-inner {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 10px 0;
         }
 
         .service-card {
-            background: var(--surface);
-            padding: 30px;
+            flex: 0 0 calc(25% - 15px);
+            min-width: 280px;
+            max-width: 300px;
+            background: var(--surface-variant);
+            padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .service-card:hover {
@@ -47,9 +59,47 @@
         }
 
         .service-card i {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--accent-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+            text-align: left;
+            width: 100%;
+        }
+
+        .service-card li {
+            font-size: 0.9rem;
+            margin: 6px 0;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            line-height: 1.3;
+        }
+
+        .service-card li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-right: 8px;
         }
 
         .pathway-section {
@@ -322,70 +372,44 @@
             color: var(--accent-color);
         }
 
+        @media (max-width: 1200px) {
+            .service-card {
+                flex: 0 0 calc(33.333% - 14px);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .service-card {
+                flex: 0 0 calc(50% - 10px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .service-card {
+                flex: 0 0 100%;
+                max-width: 400px;
+            }
+        }
+
         @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: flex;
+            .service-header {
+                padding: 80px 0 40px;
             }
 
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--surface);
-                padding: 1rem;
-                flex-direction: column;
-                gap: 1rem;
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .dropdown-menu {
-                position: static;
-                box-shadow: none;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                display: none;
-                padding-left: 1rem;
-                width: 100%;
-            }
-
-            .dropdown.active .dropdown-menu {
-                display: block;
-            }
-
-            .dropdown:hover .dropdown-menu {
-                display: block !important;
-            }
-
-            .dropdown-toggle {
-                justify-content: space-between;
-                width: 100%;
-            }
-
-            .contact-popup {
-                width: 95%;
-                max-width: none;
-            }
-
-            .contact-popup-content {
-                padding: 20px;
+            .personal-journey,
+            .services-grid,
+            .pathway-section,
+            .network-section,
+            .cta-section {
+                padding: 40px 0;
             }
         }
 
-        .service-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-
-        .service-card li {
-            margin: 10px 0;
+        .cta-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
         }
     </style>
 </head>
@@ -456,53 +480,101 @@
     <main>
         <section class="service-header">
             <div class="container">
-                <h1>Your Australian Dream Starts Here</h1>
-                <p>Expert guidance for your education and migration journey, backed by real experience</p>
+                <h1>Business Services</h1>
+                <p>Your trusted partner for comprehensive business solutions in Australia</p>
             </div>
         </section>
 
         <section class="personal-journey">
             <div class="container">
                 <div class="journey-content">
-                    <h2>We've Been in Your Shoes</h2>
-                    <p>As former international students who have successfully navigated the path to Australian citizenship, we understand your journey firsthand. Our personal experience drives our passion to help others achieve their Australian dreams, whether through education or permanent migration.</p>
+                    <h2>Comprehensive Business Solutions</h2>
+                    <p>We provide end-to-end business services to help your company thrive in Australia</p>
                 </div>
             </div>
         </section>
 
-        <section class="services-section">
+        <section class="services-grid">
             <div class="container">
-                <h2>Our Services</h2>
-                <div class="services-grid">
+                <div class="services-grid-inner">
                     <div class="service-card">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h3>Education Pathways</h3>
+                        <i class="fas fa-building"></i>
+                        <h3>Company Formation & Setup</h3>
+                        <p>Streamline your business establishment in Australia with our expert guidance:</p>
                         <ul>
-                            <li>Course Selection Guidance</li>
-                            <li>University Applications</li>
-                            <li>Student Visa Support</li>
-                            <li>Pre-departure Briefing</li>
+                            <li>Business structure selection and registration</li>
+                            <li>ASIC compliance and documentation</li>
+                            <li>Business name registration</li>
+                            <li>ABN and TFN registration</li>
+                            <li>GST registration and management</li>
                         </ul>
                     </div>
+
                     <div class="service-card">
-                        <i class="fas fa-passport"></i>
-                        <h3>Migration Services</h3>
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Business Advisory & Strategy</h3>
+                        <p>Strategic guidance to help your business thrive:</p>
                         <ul>
-                            <li>Visa Assessment</li>
-                            <li>Permanent Residency Pathways</li>
-                            <li>Skills Assessment</li>
-                            <li>Document Preparation</li>
+                            <li>Market entry strategy development</li>
+                            <li>Business plan creation and review</li>
+                            <li>Growth strategy implementation</li>
+                            <li>Risk assessment and management</li>
+                            <li>Industry-specific compliance guidance</li>
                         </ul>
                     </div>
+
                     <div class="service-card">
-                        <i class="fas fa-hands-helping"></i>
-                        <h3>Settlement Support</h3>
+                        <i class="fas fa-calculator"></i>
+                        <h3>Financial Management</h3>
+                        <p>Comprehensive financial services for your business:</p>
                         <ul>
-                            <li>Accommodation Assistance</li>
-                            <li>Bank Account Setup</li>
-                            <li>Healthcare Registration</li>
-                            <li>Community Integration</li>
+                            <li>Bookkeeping and accounting services</li>
+                            <li>Tax planning and compliance</li>
+                            <li>Financial reporting and analysis</li>
+                            <li>Payroll management</li>
+                            <li>Business performance monitoring</li>
                         </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Legal & Compliance</h3>
+                        <p>Ensure your business operates within Australian regulations:</p>
+                        <ul>
+                            <li>Contract review and drafting</li>
+                            <li>Employment law compliance</li>
+                            <li>Intellectual property protection</li>
+                            <li>Regulatory compliance monitoring</li>
+                            <li>Business licensing and permits</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pathway-section">
+            <div class="container">
+                <h2>Why Choose RRB Group?</h2>
+                <div class="pathway-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Expert Knowledge</h3>
+                        <p>Our team brings extensive experience in Australian business operations and regulations.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Comprehensive Support</h3>
+                        <p>From initial setup to ongoing operations, we provide end-to-end business solutions.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Tailored Approach</h3>
+                        <p>Customized solutions designed to meet your specific business needs and objectives.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Proactive Guidance</h3>
+                        <p>Stay ahead with our forward-thinking approach to business management and compliance.</p>
                     </div>
                 </div>
             </div>
@@ -511,27 +583,26 @@
         <section class="network-section">
             <div class="container">
                 <h2>Our Provider Network</h2>
-                <p>We've built strong relationships with leading education and migration service providers across Australia</p>
                 <div class="provider-grid">
                     <div class="provider-card">
-                        <i class="fas fa-university"></i>
-                        <h3>Universities</h3>
-                        <p>Direct partnerships with leading Australian universities</p>
+                        <i class="fas fa-calculator"></i>
+                        <h3>Accountants</h3>
+                        <p>Expert financial management and tax services</p>
                     </div>
                     <div class="provider-card">
-                        <i class="fas fa-school"></i>
-                        <h3>Vocational Colleges</h3>
-                        <p>Connections with quality vocational education providers</p>
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Corporate & Commercial Lawyers</h3>
+                        <p>Professional legal services for your business</p>
                     </div>
                     <div class="provider-card">
-                        <i class="fas fa-gavel"></i>
+                        <i class="fas fa-passport"></i>
                         <h3>Migration Agents</h3>
-                        <p>Network of registered migration agents</p>
+                        <p>Registered migration specialists</p>
                     </div>
                     <div class="provider-card">
                         <i class="fas fa-home"></i>
                         <h3>Accommodation</h3>
-                        <p>Trusted accommodation partners</p>
+                        <p>Quality housing solutions</p>
                     </div>
                 </div>
             </div>
@@ -539,9 +610,9 @@
 
         <section class="cta-section">
             <div class="container">
-                <h2>Start Your Australian Journey Today</h2>
-                <p>Let us guide you through your education and migration pathway with our firsthand experience and extensive network of providers.</p>
-               
+                <h2>Ready to Grow Your Business in Australia?</h2>
+                <p>Let our team of experts help you establish and expand your business with comprehensive solutions tailored to your needs.</p>
+                <a href="contact.html" class="cta-button">Get Started Today</a>
             </div>
         </section>
     </main>

@@ -718,6 +718,63 @@
                 padding: 20px;
             }
         }
+
+        .faq-section {
+            padding: 80px 0;
+            background: var(--surface-variant);
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .faq-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .faq-item p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 40px 0;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .faq-item {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body class="virtual-office-page">
@@ -739,11 +796,11 @@
                         <a class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
                             <a href="virtual-office.html">Virtual Office</a>
+                            <a href="migration.html">Business Services</a>
                             <a href="buyers-agent.html">Buyer's Agent</a>
-                            <a href="import-export.html">Import/Export</a>
-                            <a href="migration.html">Migration & Education</a>
-                            <a href="lab-equipment.html">Lab Equipment</a>
                             <a href="buying-in-bali.html">Buying in Bali</a>
+                            <a href="lab-equipment.html">Lab Equipment</a>
+                            <a href="import-export.html">Import/Export Solutions</a>
                         </div>
                     </div>
                     <a href="about.html">About Us</a>
@@ -845,7 +902,6 @@
                                 <ul class="features-list">
                                     <li><i class="fas fa-check"></i> Registered office address (for company registration)</li>
                                     <li><i class="fas fa-check"></i> Correspondence address</li>
-                                    <li><i class="fas fa-check"></i> Handling incoming correspondence</li>
                                     <li><i class="fas fa-check"></i> Informing about the arrival of new correspondence</li>
                                     <li><i class="fas fa-check"></i> Possibility of renting a conference room - 1x per quarter FREE</li>
                                     <li><i class="fas fa-check"></i> Found a cheaper price? Send us a competitor's offer - we'll lower it for you!</li>
@@ -946,6 +1002,39 @@
                         </form>
                     </div>
                 </section>
+
+                <!-- FAQ Section -->
+                <section class="faq-section">
+                    <div class="container">
+                        <h2>Frequently Asked Questions</h2>
+                        <div class="faq-grid">
+                            <div class="faq-item">
+                                <h3>What is a Virtual Office?</h3>
+                                <p>A Virtual Office provides businesses with a professional business address, mail handling services, and access to meeting rooms without the need for a physical office space. It's perfect for businesses looking to establish a presence in a prime location while maintaining flexibility.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>How does mail handling work?</h3>
+                                <p>We receive and manage your business mail at our professional address. You can choose to have your mail forwarded to your preferred address, scanned and emailed to you, or held for collection. Our team ensures secure handling of all your correspondence.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>Can I use the meeting rooms?</h3>
+                                <p>Yes! Our Virtual Office clients have access to our professional meeting rooms at discounted rates. You can book meeting rooms by the hour or day, with options for small meetings or larger conference spaces.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>What are the contract terms?</h3>
+                                <p>We offer flexible contract terms starting from as little as one month. There are no long-term commitments required, and you can upgrade or downgrade your package as your business needs change.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>Is there a setup fee?</h3>
+                                <p>No, there is no setup fee for our Virtual Office services. You only pay for the services you use, making it a cost-effective solution for businesses of all sizes.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>Can I receive packages?</h3>
+                                <p>Yes, we can receive and handle packages on your behalf. We'll notify you when packages arrive and can arrange for forwarding or collection according to your preferences.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </section>
     </main>
@@ -956,11 +1045,11 @@
                 <h4>Products</h4>
                 <ul>
                     <li><a href="virtual-office.html">Virtual Office</a></li>
+                    <li><a href="migration.html">Business Services</a></li>
                     <li><a href="buyers-agent.html">Buyer's Agent</a></li>
-                    <li><a href="import-export.html">Import/Export</a></li>
-                    <li><a href="migration.html">Migration & Education</a></li>
-                    <li><a href="lab-equipment.html">Lab Equipment</a></li>
                     <li><a href="buying-in-bali.html">Buying in Bali</a></li>
+                    <li><a href="lab-equipment.html">Lab Equipment</a></li>
+                    <li><a href="import-export.html">Import/Export Solutions</a></li>
                 </ul>
             </div>
             <div class="footer-section">
