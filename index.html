@@ -336,7 +336,7 @@
 
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             width: 100%;
         }
@@ -349,7 +349,7 @@
 
         .tradingview-widget-container {
             width: 100%;
-            max-width: 100%;
+            max-width: max-content;
             overflow: hidden;
         }
 
@@ -857,8 +857,7 @@
                                     "feedMode": "all_symbols",
                                     "isTransparent": false,
                                     "displayMode": "regular",
-                                    "width": "100%",
-                                    "height": "500",
+                                    "autosize": true,
                                     "colorTheme": "light",
                                     "locale": "en"
                                 });
@@ -876,8 +875,7 @@
                               "dateRange": "12M",
                               "showChart": true,
                               "locale": "en",
-                              "width": "100%",
-                              "height": "400",
+                              "autosize": true,
                               "largeChartUrl": "",
                               "isTransparent": false,
                               "showSymbolLogo": true,
