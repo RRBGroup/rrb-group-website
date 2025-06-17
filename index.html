@@ -355,7 +355,7 @@
 
         .tradingview-widget-container {
             width: 100%;
-            max-width: 100%;
+            max-width: max-content;
             overflow: hidden;
         }
 
@@ -622,7 +622,7 @@
 
             .tradingview-widget-container {
                 width: 400px;
-                max-width: 400px;
+                max-width: max-content;
                 margin: 0 auto;
             }
 
@@ -646,15 +646,15 @@
             }
 
             .about-stats {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                display: flex;
+             
                 gap: 10px;
                 margin-top: 20px;
                 padding: 0;
             }
 
             .stat-item {
-                padding: 10px;
+                padding: px;
             }
 
             .stat-item h3 {
